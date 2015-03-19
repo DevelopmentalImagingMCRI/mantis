@@ -4,19 +4,20 @@ function job = tbx_cfg_mantis
 % Jian Chen
 % $Id: tbx_cfg_mantis.m 7 2014-05-06 14:39:07Z chen $
 
-addpath(fullfile(spm('dir'),'toolbox','MANTIS'));
+addpath(fullfile(spm('dir'),'toolbox','mantis'));
 
 %_______________________________________________________________________
 
 data = cfg_files;
 data.tag  = 'data';
 data.name = 'Volumes';
-data.help = {[...
-'Select raw data (e.g. T1 images) for processing. ',...
-'This assumes that there is one scan for each subject. ',...
-'Note that multi-spectral (when there are two or more registered ',...
-'images of different contrasts) processing is not yet implemented ',...
-'for this method.']};
+data.help = {
+'Select raw data (e.g. T1 images) for processing. '
+'This assumes that there is one scan for each subject. '
+'Note that multi-spectral (when there are two or more registered '
+'images of different contrasts) processing is not yet implemented '
+'for this method.'
+};
 data.filter = 'image';
 data.ufilter = '.*';
 data.num     = [1 Inf];
@@ -45,10 +46,9 @@ odir.tag     = 'odir';
 odir.name    = 'Output Directory';       
 odir.val = {{'.'}};
 odir.help    = {
-    ['This defaults to the current work directory. It ' ...
-        'is, however, a good '']
-       'idea to create a separate directory with a meaningful ' ...
-    'name for each project.'']
+    'This defaults to the current work directory. It is, however, a good '
+    'idea to create a separate directory with a meaningful '
+    'name for each project.'
       }';
 odir.filter = 'dir';
 odir.ufilter = '.*';
@@ -64,7 +64,7 @@ segrun1.name    = 'SPM Segmentation run1';
 %segrun1.val     = {data};    
 segrun1.val     = {idir};
 segrun1.help    = {'SPM Segmentation run1.'};
-segrun1.prog = @(job)cg_mantis('segrun1',job);    
+segrun1.prog = @(job)cg_mantis_jobs('segrun1',job);    
 %segrun1.vout = @vout_spmrun1;
 
 % ---------------------------------------------------------------------
@@ -76,7 +76,7 @@ segcsf.name    = 'Adaptive CSF segmentation';
 %segcsf.val     = {data};    
 segcsf.val     = {idir};
 segcsf.help    = {'Adaptive CSF segmentation.'};
-segcsf.prog = @(job)cg_mantis('segcsf',job);  
+segcsf.prog = @(job)cg_mantis_jobs('segcsf',job);  
 %segcsf.vout = @vout_spmcsf;
 
 % ---------------------------------------------------------------------
@@ -88,7 +88,7 @@ wmclean.name    = 'Clean White matter';
 %wmclean.val     = {data};    
 wmclean.val     = {idir};
 wmclean.help    = {'Clean White matter.'};
-wmclean.prog = @(job)cg_mantis('wmclean',job);       
+wmclean.prog = @(job)cg_mantis_jobs('wmclean',job);       
 %wmclean.vout = @vout_wmclean;
 
 % %
@@ -114,7 +114,7 @@ hardlabel.name    = 'Hard segmentation label';
 %hardlabel.val     = {data};    
 hardlabel.val     = {idir};
 hardlabel.help    = {'Hard segmentation label.'};
-hardlabel.prog = @(job)cg_mantis('hardlabel',job);       
+hardlabel.prog = @(job)cg_mantis_jobs('hardlabel',job);       
 %hardlabel.vout = @vout_hardlabel;
 
 % ---------------------------------------------------------------------
@@ -126,7 +126,7 @@ calvol.name    = 'Segmentation volumes';
 %calvol.val     = {data};    
 calvol.val     = {idir};
 calvol.help    = {'Segmentation volumes.'};
-calvol.prog = @(job)cg_mantis('calvol',job);       
+calvol.prog = @(job)cg_mantis_jobs('calvol',job);       
 
 
 
@@ -139,14 +139,15 @@ batchrun.name    = 'Segmentation volumes';
 %batchrun.val     = {data};    
 batchrun.val     = {idir};
 batchrun.help    = {'Segmentation volumes.'};
-batchrun.prog = @(job)cg_mantis('batchrun',job);       
+batchrun.prog = @(job)cg_mantis_jobs('batchrun',job);       
 
 
 % ---------------------------------------------------------------------
 % mantis Adaptive-Neonatal-Brain-Segmentation
-% ---------------------------------------------------------------------job= cfg_choice;
+% ---------------------------------------------------------------------
+job= cfg_choice;
 job.tag     = 'mantis';
-job.name    = 'Adaptive-Neonatal-Brain-Segmentation';
+job.name    = 'Morphological adaptive neonatal tissue segmentation';
 job.help    = {'Help needed'};
 job.values  = {segrun1 segcsf wmclean segrun2 hardlabel calvol batchrun};
 
