@@ -26,11 +26,11 @@ mantis.opts.scripts   = {fullfile(spm('dir'),'toolbox','mantis', 'Scripts')}; % 
 
 % Segmentation job
 %=======================================================================
-mantis.opts.segjob    = {fullfile(spm('dir'),'toolbox','mantis', 'segment_ext_job.m')}; % segment_ext job
+mantis.opts.segjob    = {fullfile(spm('dir'),'toolbox','mantis', 'mantis_segment_ext_job.m')}; % segment_ext job
 
 
 % deformation job
 %=======================================================================
-mantis.opts.defjob    = {fullfile(spm('dir'),'toolbox','mantis', 'deformation_job.m')}; % deformation job
+mantis.opts.defjob    = {fullfile(spm('dir'),'toolbox','mantis', 'mantis_deformation_job.m')}; % deformation job
 
 

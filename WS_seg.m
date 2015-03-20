@@ -1,7 +1,8 @@
 function WS_seg (root_dir, out_dir)
 %function WS_seg (root_dir, out_dir)
 
-ITKdir = fullfile(spm('dir'),'toolbox','ANBS/ITK_Code/Code/Build/');
+ITKdir = fullfile(spm('dir'),'toolbox','mantis', 'ITK_Code', 'Code', ...
+                  'Build');
 
 csf = spm_select('FPList',root_dir,'^c3.*\.nii$');
 grey = spm_select('FPList',root_dir,'^c1.*\.nii$');
