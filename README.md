@@ -15,3 +15,8 @@ Phase 1:
 
 cfg_phase1_tissue_classification.m - calls tbx_cfg_preproc8 and
 replaces the tissue component.
+
+
+Creating sub folders: 
+
+Need a folder creator that can use dependencies
