@@ -1,8 +1,13 @@
 function job = cfg_phase1_tissue_classification
 
 %% call the newsegment job creator
-newsegmentjob=tbx_cfg_preproc8;
-
+try
+    % spm12
+    newsegment=spm_cfg_preproc8;
+catch
+    % spm 8
+    newsegmentjob=tbx_cfg_preproc8;
+end    
 %% Change the tissue maps
 
 %fslmerge -t NeonateTPM /tmp/spm8/toolbox/ANBS/template/cortex.nii
