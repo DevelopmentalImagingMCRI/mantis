@@ -142,6 +142,7 @@ batchrun.help    = {'Segmentation volumes.'};
 batchrun.prog = @(job)cg_mantis_jobs('batchrun',job);       
 
 p1test = cfg_phase1_tissue_classification;
+mover=cfg_mantis_movetosubdir;
 % ---------------------------------------------------------------------
 % mantis Adaptive-Neonatal-Brain-Segmentation
 % ---------------------------------------------------------------------
@@ -150,7 +151,7 @@ job.tag     = 'mantis';
 job.name    = 'Morphological adaptive neonatal tissue segmentation';
 job.help    = {'Help needed'};
 %job.values  = {segrun1 segcsf wmclean segrun2 hardlabel calvol batchrun};
-job.values={p1test};
+job.values={p1test mover};
 
 %-------------------------------------------------------------------------
 % function dep = vout_spmrun1(job)
