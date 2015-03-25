@@ -19,6 +19,11 @@ mantis.opts.tpm       = {fullfile(spm('dir'),'toolbox','mantis','template')}; % 
 %=======================================================================
 mantis.opts.itk       = {fullfile(spm('dir'),'toolbox','mantis', 'ITK_Code', 'Code', 'Build')}; % Itk scripts
 
+%=======================================================================
+% Folder names
+mantis.opts.phase1 = {'Phase1'};
+mantis.opts.phase2 = {'Phase2'};
+
 % Shell scripts
 %=======================================================================
 mantis.opts.scripts   = {fullfile(spm('dir'),'toolbox','mantis', 'Scripts')}; % Scripts directory

@@ -34,11 +34,13 @@ job.vout = @vout;
 end
 
 function dep = vout(job)
-% This depends on job contents, 
-% It needs to provide ways of accessing the contents of the structure 
-% returned by the run function, or at least anything that
-% might become a dependency
+% The output of this job is always the same
+cdep = cfg_dep;
+cdep(end).sname      = 'Watershed csf seg';
+cdep(end).src_output = substruct('.','csfseg','()',{':'});
+cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
 
+dep=cdep;
 
 end
 
