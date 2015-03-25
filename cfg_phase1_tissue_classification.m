@@ -3,7 +3,7 @@ function job = cfg_phase1_tissue_classification
 %% call the newsegment job creator
 try
     % spm12
-    newsegment=spm_cfg_preproc8;
+    newsegmentjob=spm_cfg_preproc8;
 catch
     % spm 8
     newsegmentjob=tbx_cfg_preproc8;
