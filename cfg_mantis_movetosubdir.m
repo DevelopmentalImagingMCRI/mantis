@@ -4,7 +4,7 @@ function job = cfg_mantis_movetosubdir
 % the existing tools.
 files         = cfg_files;
 files.tag     = 'files';
-files.name    = 'Files to moved';
+files.name    = 'Files to move';
 files.help    = {'These files will be moved.'};
 files.filter = 'any';
 files.ufilter = '.*';
@@ -23,7 +23,7 @@ file_move.name    = 'Move/Delete Files';
 file_move.val     = {files subfolder };
 file_move.help    = {'Move files to subfolder.'};
 file_move.prog = @cfg_mantis_movetosubdir_run;
-%No outputs from this module?
-%file_move.vout = @cfg_mantis_movetosubdir_vout;
+% Outputs are new locations
+file_move.vout = @cfg_mantis_movetosubdir_vout;
 job=file_move;
 end
