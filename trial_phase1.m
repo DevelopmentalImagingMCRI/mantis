@@ -1,7 +1,7 @@
 %-----------------------------------------------------------------------
 % Job configuration created by cfg_util (rev $Rev: 4252 $)
 %-----------------------------------------------------------------------
-matlabbatch{1}.spm.tools.mantis.phase1.channel.vols = {'/gpfs/M2Home/rbeare/Projects/MCRI/VibesSeg/wu004T2x_N3_brain.nii,1'};
+matlabbatch{1}.spm.tools.mantis.phase1.channel.vols = {'/home/richardb/Projects/NeonateSegmentation/Data/wu004T2x_N3_brain.nii,1'};
 matlabbatch{1}.spm.tools.mantis.phase1.channel.biasreg = 0.0001;
 matlabbatch{1}.spm.tools.mantis.phase1.channel.biasfwhm = 60;
 matlabbatch{1}.spm.tools.mantis.phase1.channel.write = [0 0];

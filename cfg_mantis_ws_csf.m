@@ -1,10 +1,10 @@
 function job = cfg_mantis_ws_csf
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%cfg_mantis_ws_csf batch setup
 vols         = cfg_files;
 vols.tag     = 'vols';
 vols.name    = 'Volumes';
-vols.help    = {'Select scans from this channel for processing.'};
+vols.help    = {['Select GM map from phase 1. Other images will be ' ...
+                 'figured out.']};
 vols.filter = 'image';
 vols.ufilter = '.*';
 vols.num     = [1 Inf];
