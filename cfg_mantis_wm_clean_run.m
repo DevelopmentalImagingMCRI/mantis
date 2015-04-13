@@ -1,4 +1,4 @@
-function res = cfg_mantis_ws_csf_run( job )
+function res = cfg_mantis_wm_clean_run( job )
 %cfg_mantis_ws_run Watershed segmentation of csf using phase1 tissue maps
 %   Calls external ITK code
 
@@ -10,32 +10,28 @@ function res = cfg_mantis_ws_csf_run( job )
 
 exedir = char(cg_mantis_get_defaults('opts.itk'));
 % Do we need to do something for windows?
-exe = fullfile(exedir, 'segCSF'); 
+exe = fullfile(exedir, 'cleanWM'); 
 
 Phase1Dir = job.parent{1}
 Phase2Dir = char(cg_mantis_get_defaults('opts.phase2'));
-SUFF='csfmask'; % is this right
+%SUFF='wscsf'; % is this right
 % We need to be able to process multiple structural scans
-for k=1:numel(job.vols)
-    GMfile=char(job.vols{k});
-    [srcdir, imname, ext]=fileparts(GMfile);
-    corename=imname(3:end);
-    %ext=ext(1:end-2);
-    T2=fullfile( srcdir, [corename ext]);
-    CSF=fullfile( Phase1Dir, ['c3' corename ext]);
-    GM=fullfile( Phase1Dir, ['c1' corename ext]);
-    OUTPREF=fullfile(srcdir, Phase2Dir, corename);
-    command=[exe ' --input ' T2 ' --csf ' CSF ' --grey ' GM ' --outputprefix ' OUTPREF];
-    system(command);
-    outnames{k}=fullfile(srcdir, Phase2Dir, [corename SUFF ext]);
-    T2names{k}=T2;
-end
 
+for k=1:numel(job.vols)
+    T2=char(job.vols{k});
+    [srcdir, imname, ext]=fileparts(T2);
+    WScsffile=fullfile(srcdir, Phase2Dir, [imname '_csfmask.nii']);
+    %T2=fullfile( srcdir, [corename ext]);
+    OUTNAME=fullfile(srcdir, Phase2Dir, [imname '.nii']);
+    command=[exe ' -i ' T2 ' -m ' WScsffile  ' -o ' OUTNAME ];
+    system(command);
+    outnames{k}=OUTNAME;
+    
+end
 
 
 % result is the segmented csf. We need to return a structure containing
 % this filename
-res.csfseg = outnames;
-res.structural=T2names;
+res.wmclean = outnames;
 end
 

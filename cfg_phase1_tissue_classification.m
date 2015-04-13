@@ -107,7 +107,7 @@ tissues.name    = 'Tissues';
 tissues.values  = {tissue };
 tissues.num     = [0 Inf];
 
-tissues.val     = {tissue tissue tissue tissue tissue tissue };
+%tissues.val     = {tissue tissue tissue tissue tissue tissue };
 tpm_nam = fullfile(char(cg_mantis_get_defaults('opts.tpm')),'NeonateTPM.nii');
 ngaus   = [2 2 2 2 2 2 2 2 2];
 nval    = {[1 0],[1 0],[1 0],[1 0],[1 0],[1 0],[1 0],[1 0],[1 0]};
@@ -120,7 +120,7 @@ end
 
 % replace the original tissue maps
 newsegmentjob.val{2}=tissues;
-
+newsegmentjob.val{3}.val{5}.val={[1 1]}; %Deformation fields
 newsegmentjob.tag = 'phase1';
 newsegmentjob.name = 'Mantis: Phase 1 tissue classification';
 %job.val={data matlabbatch};
