@@ -145,6 +145,8 @@ p1test = cfg_phase1_tissue_classification;
 mover=cfg_mantis_movetosubdir;
 wscsf=cfg_mantis_ws_csf;
 wmclean=cfg_mantis_wm_clean;
+mantisfolderinfo = cg_mantis_phases;
+deformations=cg_mantis_deformations;
 % ---------------------------------------------------------------------
 % mantis Adaptive-Neonatal-Brain-Segmentation
 % ---------------------------------------------------------------------
@@ -153,7 +155,7 @@ job.tag     = 'mantis';
 job.name    = 'Morphological adaptive neonatal tissue segmentation';
 job.help    = {'Help needed'};
 %job.values  = {segrun1 segcsf wmclean segrun2 hardlabel calvol batchrun};
-job.values={p1test mover wscsf wmclean};
+job.values={p1test mover wscsf wmclean mantisfolderinfo deformations};
 
 %-------------------------------------------------------------------------
 % function dep = vout_spmrun1(job)
