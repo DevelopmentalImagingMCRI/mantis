@@ -13,8 +13,9 @@ global mantis
 
 % Template
 %=======================================================================
-mantis.opts.tpm       = {fullfile(spm('dir'),'toolbox','mantis','template')}; % Template directory
-
+mantis.opts.tpmd       = {fullfile(spm('dir'),'toolbox','mantis','template')}; % Template directory
+mantis.opts.tpm       = {fullfile(spm('dir'),'toolbox','mantis','template', 'NeonateTPM.nii')}; % Template directory
+mantis.opts.tpmcomponents = 9;
 % ITK code
 %=======================================================================
 mantis.opts.itk       = {fullfile(spm('dir'),'toolbox','mantis', 'ITK_Code', 'Code', 'Build')}; % Itk scripts

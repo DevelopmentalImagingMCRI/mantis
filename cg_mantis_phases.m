@@ -1,6 +1,6 @@
 function job = cg_mantis_phases
 % retrieves the default phase directories
-% and makes the path to the directories available
+% and makes them available
 % as a dependency object.
 % Will make both the full path and the prefix available
 
@@ -60,6 +60,8 @@ cdep(end).sname      = 'Structural image folder (root)';
 cdep(end).src_output = substruct('.','root','()',{':'});
 cdep(end).tgt_spec   = cfg_findspec({{'filter','dir','strtype','e'}});
 
+% stuff for template
+
 dep=cdep;
 
 end
@@ -95,5 +97,6 @@ res.outpathphase3=outpathphase3;
 res.phase1fold=phase1fold;
 res.phase2fold=phase2fold;
 res.phase3fold=phase3fold;
+
 res.root=root;
 end
