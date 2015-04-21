@@ -63,23 +63,23 @@ cdep(end).tgt_spec   = cfg_findspec({{'filter','dir','strtype','e'}});
 
 cdep (end+1) = cfg_dep;
 cdep(end).sname      = 'Phase1 single subfolder';
-cdep(end).src_output = substruct('.','outpathphase1','()',{'1'});
+cdep(end).src_output = substruct('.','outpathphase1','()',{1});
 cdep(end).tgt_spec   = cfg_findspec({{'filter','dir','strtype','e'}});
 
 cdep(end+1) = cfg_dep;
 cdep(end).sname      = 'Phase2 single subfolder';
-cdep(end).src_output = substruct('.','outpathphase2','()',{'1'});
+cdep(end).src_output = substruct('.','outpathphase2','()',{1});
 cdep(end).tgt_spec   = cfg_findspec({{'filter','dir','strtype','e'}});
 
 cdep(end+1) = cfg_dep;
 cdep(end).sname      = 'Phase3 single subfolder';
-cdep(end).src_output = substruct('.','outpathphase3','()',{'1'});
+cdep(end).src_output = substruct('.','outpathphase3','()',{1});
 cdep(end).tgt_spec   = cfg_findspec({{'filter','dir','strtype','e'}});
 
 
 cdep(end+1) = cfg_dep;
 cdep(end).sname      = 'Structural single image folder (root)';
-cdep(end).src_output = substruct('.','root','()',{'1'});
+cdep(end).src_output = substruct('.','root','()',{1});
 cdep(end).tgt_spec   = cfg_findspec({{'filter','dir','strtype','e'}});
 
 % stuff for template
@@ -122,4 +122,5 @@ res.phase2fold=phase2fold;
 res.phase3fold=phase3fold;
 
 res.root=root;
+
 end
