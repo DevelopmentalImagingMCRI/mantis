@@ -1,5 +1,4 @@
 function job = cfg_mantis_wm_clean
-%cfg_mantis_ws_csf batch setup
 vols         = cfg_files;
 vols.tag     = 'vols';
 vols.name    = 'Volumes';

@@ -16,6 +16,19 @@ global mantis
 mantis.opts.tpmd       = {fullfile(spm('dir'),'toolbox','mantis','template')}; % Template directory
 mantis.opts.tpm       = {fullfile(spm('dir'),'toolbox','mantis','template', 'NeonateTPM.nii')}; % Template directory
 mantis.opts.tpmcomponents = 9;
+
+% Firstnorm
+%=======================================================================
+mantis.opts.tpm2d       = {fullfile(spm('dir'),'toolbox','mantis','template')}; % Template directory
+mantis.opts.tpm2       = {fullfile(spm('dir'),'toolbox','mantis','template', 'Firstnorm.nii')}; % Template directory
+mantis.opts.tpm2components = 8;
+
+% BrainEdge
+%=======================================================================
+mantis.opts.tpm2d       = {fullfile(spm('dir'),'toolbox','mantis','template')}; % Template directory
+mantis.opts.tpm2       = {fullfile(spm('dir'),'toolbox','mantis','template', 'BrainEdge.nii')}; % Template directory
+mantis.opts.tpm2components = 1;
+
 % ITK code
 %=======================================================================
 mantis.opts.itk       = {fullfile(spm('dir'),'toolbox','mantis', 'ITK_Code', 'Code', 'Build')}; % Itk scripts

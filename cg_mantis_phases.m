@@ -60,6 +60,28 @@ cdep(end).sname      = 'Structural image folder (root)';
 cdep(end).src_output = substruct('.','root','()',{':'});
 cdep(end).tgt_spec   = cfg_findspec({{'filter','dir','strtype','e'}});
 
+
+cdep (end+1) = cfg_dep;
+cdep(end).sname      = 'Phase1 single subfolder';
+cdep(end).src_output = substruct('.','outpathphase1','()',{'1'});
+cdep(end).tgt_spec   = cfg_findspec({{'filter','dir','strtype','e'}});
+
+cdep(end+1) = cfg_dep;
+cdep(end).sname      = 'Phase2 single subfolder';
+cdep(end).src_output = substruct('.','outpathphase2','()',{'1'});
+cdep(end).tgt_spec   = cfg_findspec({{'filter','dir','strtype','e'}});
+
+cdep(end+1) = cfg_dep;
+cdep(end).sname      = 'Phase3 single subfolder';
+cdep(end).src_output = substruct('.','outpathphase3','()',{'1'});
+cdep(end).tgt_spec   = cfg_findspec({{'filter','dir','strtype','e'}});
+
+
+cdep(end+1) = cfg_dep;
+cdep(end).sname      = 'Structural single image folder (root)';
+cdep(end).src_output = substruct('.','root','()',{'1'});
+cdep(end).tgt_spec   = cfg_findspec({{'filter','dir','strtype','e'}});
+
 % stuff for template
 
 dep=cdep;
@@ -71,6 +93,7 @@ if (success ~= 1) & ~strcmp(messageid, 'MATLAB:MKDIR:DirectoryExists')
     message
 end
 end
+
 function res = mantis_phases(job)
 p1 =  char(cg_mantis_get_defaults('opts.phase1'));
 p2 =  char(cg_mantis_get_defaults('opts.phase2'));

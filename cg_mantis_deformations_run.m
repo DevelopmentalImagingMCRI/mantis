@@ -8,9 +8,9 @@ for k=1:numel(job.def)
     [defdir, defname, ext] = fileparts(job.def{k});
     oname=regexprep(defname, 'i*y_', '');
     oname=['atlas_' oname];
-    [Def,mat] = get_def(job.def{k});
-    [dpath ipath] = get_paths(job);
-    out.warped{k} = apply_def(Def,mat,strvcat(job.fnames),ipath,oname, job.interp);
+    [Def,mat] = get_def({job.def{k}});
+    [dpath ipath] = get_paths(job, k);
+    out.warped{k} = apply_def(Def,mat,strvcat(job.fnames),oname,ipath, job.interp);
 end
 %_______________________________________________________________________
 
@@ -42,21 +42,26 @@ mat         = VT.mat;
 %_______________________________________________________________________
 
 %_______________________________________________________________________
-function [dpath,ipath] = get_paths(job)
-switch char(fieldnames(job.savedir))
-    case 'savepwd'
-        dpath = pwd;
-        ipath = pwd;
-    case 'savesrc'
-        dpath = get_dpath(job);
-        ipath = '';
-    case 'savedef'
-        dpath = get_dpath(job);
+function [dpath,ipath] = get_paths(job,k)
+% switch char(fieldnames(job.savedir))
+%     case 'savepwd'
+%         dpath = pwd;
+%         ipath = pwd;
+%     case 'savesrc'
+%         dpath = get_dpath(job);
+%         ipath = '';
+%     case 'savedef'
+%         dpath = get_dpath(job);
+%         ipath = dpath;
+%    case 'saveusr'
+%        dpath = job.savedir.saveusr{1};
+         if numel(job.saveusr)==1
+             dpath = job.saveusr{1};
+         else
+             dpath = job.saveusr{k};
+         end
         ipath = dpath;
-    case 'saveusr'
-        dpath = job.savedir.saveusr{1};
-        ipath = dpath;
-end
+%end
 %_______________________________________________________________________
 
 %_______________________________________________________________________
