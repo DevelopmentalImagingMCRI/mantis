@@ -19,7 +19,7 @@ phase1Dir.name    = 'Parent Directory';
 phase1Dir.help    = {'Directory where the Phase1 results were put.'};
 phase1Dir.filter = 'dir';
 phase1Dir.ufilter = '.*';
-phase1Dir.num     = [1 1];
+phase1Dir.num     = [1 Inf];
 
 job         = cfg_exbranch;
 job.tag     = 'wscsf';

@@ -12,13 +12,14 @@ exedir = char(cg_mantis_get_defaults('opts.itk'));
 % Do we need to do something for windows?
 exe = fullfile(exedir, 'segCSF'); 
 
-Phase1Dir = job.parent{1}
+
 Phase2Dir = char(cg_mantis_get_defaults('opts.phase2'));
 SUFF='csfmask'; % is this right
 % We need to be able to process multiple structural scans
 for k=1:numel(job.vols)
-    GMfile=char(job.vols{k});
-    [srcdir, imname, ext]=fileparts(GMfile);
+    Phase1Dir = job.parent{k};
+    structfile=char(job.vols{k});
+    [srcdir, imname, ext]=fileparts(structfile);
     corename=imname;
     %ext=ext(1:end-2);
     T2=fullfile( srcdir, [corename ext]);
