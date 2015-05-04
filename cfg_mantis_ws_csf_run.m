@@ -13,11 +13,12 @@ exedir = char(cg_mantis_get_defaults('opts.itk'));
 exe = fullfile(exedir, 'segCSF'); 
 
 
-Phase2Dir = char(cg_mantis_get_defaults('opts.phase2'));
+%Phase2Dir = char(cg_mantis_get_defaults('opts.phase2'));
 SUFF='csfmask'; % is this right
 % We need to be able to process multiple structural scans
 for k=1:numel(job.vols)
     Phase1Dir = job.parent{k};
+    Phase2Dir = job.target{k};
     structfile=char(job.vols{k});
     [srcdir, imname, ext]=fileparts(structfile);
     corename=imname;
@@ -25,10 +26,10 @@ for k=1:numel(job.vols)
     T2=fullfile( srcdir, [corename ext]);
     CSF=fullfile( Phase1Dir, ['c3' corename ext]);
     GM=fullfile( Phase1Dir, ['c1' corename ext]);
-    OUTPREF=fullfile(srcdir, Phase2Dir, corename);
+    OUTPREF=fullfile(Phase2Dir, corename);
     command=[exe ' --input ' T2 ' --csf ' CSF ' --grey ' GM ' --outputprefix ' OUTPREF];
     system(command);
-    outnames{k}=fullfile(srcdir, Phase2Dir, [corename SUFF ext]);
+    outnames{k}=fullfile(Phase2Dir, [corename SUFF ext]);
     T2names{k}=T2;
 end
 

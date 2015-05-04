@@ -18,12 +18,21 @@ phase1Dir.name    = 'Parent Directory';
 phase1Dir.help    = {'Directory where the Phase1 results were put.'};
 phase1Dir.filter = 'dir';
 phase1Dir.ufilter = '.*';
-phase1Dir.num     = [1 1];
+phase1Dir.num     = [1 inf];
+
+phase2Dir         = cfg_files;
+phase2Dir.tag     = 'target';
+phase2Dir.name    = 'Target Directory';
+phase2Dir.help    = {'Directory where the Phase2 results were put.'};
+phase2Dir.filter = 'dir';
+phase2Dir.ufilter = '.*';
+phase2Dir.num     = [1 Inf];
+
 
 job         = cfg_exbranch;
 job.tag     = 'wmclean';
 job.name    = 'Morphogical clean up of White matter';
-job.val     = {vols phase1Dir };
+job.val     = {vols phase1Dir phase2Dir};
 job.help    = {
     'Clean of structural image. CSF prob maps is used'
     };

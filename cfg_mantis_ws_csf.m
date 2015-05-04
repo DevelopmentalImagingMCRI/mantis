@@ -21,10 +21,18 @@ phase1Dir.filter = 'dir';
 phase1Dir.ufilter = '.*';
 phase1Dir.num     = [1 Inf];
 
+phase2Dir         = cfg_files;
+phase2Dir.tag     = 'target';
+phase2Dir.name    = 'Target Directory';
+phase2Dir.help    = {'Directory where the Phase2 results were put.'};
+phase2Dir.filter = 'dir';
+phase2Dir.ufilter = '.*';
+phase2Dir.num     = [1 Inf];
+
 job         = cfg_exbranch;
 job.tag     = 'wscsf';
 job.name    = 'Watershed segmentation of CSF';
-job.val     = {vols phase1Dir };
+job.val     = {vols phase1Dir phase2Dir};
 job.help    = {
     'Segmentation of structural image using the watershed transform. GM and CSF prob maps are used'
     };

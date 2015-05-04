@@ -13,16 +13,18 @@ exedir = char(cg_mantis_get_defaults('opts.itk'));
 exe = fullfile(exedir, 'cleanWM'); 
 
 Phase1Dir = job.parent{1}
-Phase2Dir = char(cg_mantis_get_defaults('opts.phase2'));
+Phase2Dir = job.parent{2};
 %SUFF='wscsf'; % is this right
 % We need to be able to process multiple structural scans
 
 for k=1:numel(job.vols)
+    Phase1Dir = job.parent{k};
+    Phase2Dir = job.target{k};
     T2=char(job.vols{k});
     [srcdir, imname, ext]=fileparts(T2);
-    WScsffile=fullfile(srcdir, Phase2Dir, [imname '_csfmask.nii']);
+    WScsffile=fullfile(Phase2Dir, [imname '_csfmask.nii']);
     %T2=fullfile( srcdir, [corename ext]);
-    OUTNAME=fullfile(srcdir, Phase2Dir, [imname '.nii']);
+    OUTNAME=fullfile(Phase2Dir, [imname '.nii']);
     command=[exe ' -i ' T2 ' -m ' WScsffile  ' -o ' OUTNAME ];
     system(command);
     outnames{k}=OUTNAME;

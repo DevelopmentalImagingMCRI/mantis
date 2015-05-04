@@ -16,56 +16,6 @@ cdep(end).sname      = 'Neonate firstnorm';
 cdep(end).src_output = substruct('.','tissuemap','()',{':'});
 cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
 dep=cdep;
-
-% cdep (end+1) = cfg_dep;
-% cdep(end).sname      = 'Neonate firstnorm channel 1';
-% cdep(end).src_output = substruct('.','tissuemap','()',{'1'});
-% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-% dep=cdep;
-% 
-% cdep (end+1) = cfg_dep;
-% cdep(end).sname      = 'Neonate firstnorm channel 2';
-% cdep(end).src_output = substruct('.','tissuemap','()',{'2'});
-% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-% dep=cdep;
-% 
-% cdep (end+1) = cfg_dep;
-% cdep(end).sname      = 'Neonate firstnorm channel 3';
-% cdep(end).src_output = substruct('.','tissuemap','()',{'3'});
-% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-% dep=cdep;
-% 
-% cdep (end+1) = cfg_dep;
-% cdep(end).sname      = 'Neonate firstnorm channel 4';
-% cdep(end).src_output = substruct('.','tissuemap','()',{'4'});
-% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-% dep=cdep;
-% 
-% cdep (end+1) = cfg_dep;
-% cdep(end).sname      = 'Neonate firstnorm channel 5';
-% cdep(end).src_output = substruct('.','tissuemap','()',{'5'});
-% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-% dep=cdep;
-% 
-% cdep (end+1) = cfg_dep;
-% cdep(end).sname      = 'Neonate firstnorm channel 6';
-% cdep(end).src_output = substruct('.','tissuemap','()',{'6'});
-% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-% dep=cdep;
-% 
-% cdep (end+1) = cfg_dep;
-% cdep(end).sname      = 'Neonate firstnorm channel 7';
-% cdep(end).src_output = substruct('.','tissuemap','()',{'7'});
-% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-% dep=cdep;
-% 
-% cdep (end+1) = cfg_dep;
-% cdep(end).sname      = 'Neonate firstnorm channel 8';
-% cdep(end).src_output = substruct('.','tissuemap','()',{'8'});
-% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-% dep=cdep;
-
-
 end
 
 function res = mantis_firstnorm(job)

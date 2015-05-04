@@ -8,8 +8,8 @@ for k=1:numel(job.def)
     [defdir, defname, ext] = fileparts(job.def{k});
     oname=regexprep(defname, 'i*y_', '');
     oname=['atlas_' oname];
-    [Def,mat] = get_def({job.def{k}});
-    [dpath ipath] = get_paths(job, k);
+    [Def,mat] = get_def({job.def{k}})
+    [dpath ipath] = get_paths(job, k)
     out.warped{k} = apply_def(Def,mat,strvcat(job.fnames),oname,ipath, job.interp);
 end
 %_______________________________________________________________________
