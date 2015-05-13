@@ -746,7 +746,6 @@ typename TImage::Pointer doGradientMasked(const typename TImage::Pointer input,
                                           float xrad,
                                           float yrad=-1, float zrad=-1)
 {
-  typedef typename itk::Image<unsigned char, TImage::ImageDimension> MImage;
 
   // assumes that mask is defined by zero values in input
   // also assume mask has already been applied to input

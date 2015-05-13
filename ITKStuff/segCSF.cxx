@@ -2,6 +2,8 @@
 // Use spm result to define a box around it which well use to guide
 // filtering to remove distractors.
 
+//#define IFTWS
+
 #include <iostream>
 #include <cstdio>
 #include <vector>
@@ -14,9 +16,10 @@
 #include <itkGradientMagnitudeRecursiveGaussianImageFilter.h>
 #include <itkMorphologicalWatershedFromMarkersImageFilter.h>
 #include <itkBinaryShapeOpeningImageFilter.h>
-#include "itkIFTWatershedFromMarkersImageFilter.h"
-#include "itkBinaryOpenParaImageFilter.h"
 
+#ifdef IFTWS
+#include "itkIFTWatershedFromMarkersImageFilter.h"
+#endif
 
 #include <itkSmartPointer.h>
 namespace itk
@@ -130,20 +133,6 @@ void doSeg(const CmdLineType &CmdLineObj)
   T2Thresh->SetOutsideValue(0);
 
 
-  //itk::Instance< itk::BinaryOpenParaImageFilter <MaskImType, MaskImType> > ParaOpen;
-  //ParaOpen->SetInput(csfmask);
-  //ParaOpen->SetUseImageSpacing(false);
-  //ParaOpen->SetRadius(2);
-
-  //itk::Instance< itk::BinaryThresholdImageFilter<MaskImType, MaskImType> > OpenThresh;
-  //OpenThresh->SetInput(ParaOpen->GetOutput());
-  //OpenThresh->SetUpperThreshold(0);
-  //OpenThresh->SetLowerThreshold(0);
-  //OpenThresh->SetInsideValue(0);
-  //OpenThresh->SetOutsideValue(3);
-
-  //writeImDbg<MaskImType>(OpenThresh->GetOutput(),"volopening");
-
   // object size filter on the csfmask
   itk::Instance< itk::BinaryShapeOpeningImageFilter< MaskImType> > SizeFilter;
   SizeFilter->SetInput(csfmask);
@@ -159,7 +148,7 @@ void doSeg(const CmdLineType &CmdLineObj)
 
   writeImDbg<MaskImType>(MaxFilt->GetOutput(), "allmarkers");
 
-#if 1
+#ifndef IFTWS
 
   // use half min voxel size
 
@@ -206,7 +195,6 @@ int main(int argc, char * argv[])
   ParseCmdLine(argc, argv, CmdLineObj);
 
   const int dimension = 3;
-  typedef itk::Image<short, dimension> ImType;
 
   doSeg<short, dimension>(CmdLineObj);
 

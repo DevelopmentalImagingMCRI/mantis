@@ -138,7 +138,6 @@ int main(int argc, char * argv[])
   ParseCmdLine(argc, argv, CmdLineObj);
 
   const int dimension = 3;
-  typedef itk::Image<float, dimension> ImType;
   //itk::ImageToImageFilterCommon::SetGlobalDefaultCoordinateTolerance(1.0);
   itk::ImageToImageFilterCommon::SetGlobalDefaultDirectionTolerance(1.0);
   doFilt<float, dimension>(CmdLineObj);
