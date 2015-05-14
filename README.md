@@ -3,6 +3,9 @@
 
 The morphogical adaptive neonate tissue segmentation toolbox for spm.
 
+If you use this toolbox, please cite:
+
+
 
 ## Setup ITK tools
 
@@ -13,7 +16,7 @@ cd mantis/ITKStuff
 
 On linux/mac:
 
-ARCH=$(echo "disp(sprintf('\n%s', computer)),quit" | matlab -nojvm -nodesktop -nosplash |tail -1)
+export ARCH=$(echo "disp(sprintf('\n%s', computer)),quit" | matlab -nojvm -nodesktop -nosplash |tail -1)
 
 mkdir Build.${ARCH} 
 cd Build.${ARCH}
