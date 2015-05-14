@@ -17,7 +17,8 @@ mantis.opts.tpm       = {fullfile(spm('dir'),'toolbox','mantis','template')}; % 
 
 % ITK code
 %=======================================================================
-mantis.opts.itk       = {fullfile(spm('dir'),'toolbox','mantis', 'ITK_Code', 'Code', 'Build')}; % Itk scripts
+mantis.opts.itk       = {fullfile(spm('dir'),'toolbox','mantis', 'ITKStuff', ...
+    'Code', ['Build' computer], 'MANTiS-build', 'bin')}; % Itk binaries
 
 % Shell scripts
 %=======================================================================
