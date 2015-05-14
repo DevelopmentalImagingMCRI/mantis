@@ -1,9 +1,6 @@
-// this version just for DGM.
-// Use spm result to define a box around it which well use to guide
-// filtering to remove distractors.
-
-//#define IFTWS
-
+// this tool performs simple segmentations of the ventricles, give
+// a probability map from spm. The idea is to use the map as
+// a marker for segmenting enlarged ventricles.
 #include <iostream>
 #include <cstdio>
 #include <vector>
@@ -195,6 +192,17 @@ int main(int argc, char * argv[])
   ParseCmdLine(argc, argv, CmdLineObj);
 
   const int dimension = 3;
+
+  // These tolerances are being set high because we rely on spm to pass in
+  // appropriate data. Problems arise because spm uses the sform when
+  // the sform and qform are different while ITK seems to use the
+  // qform.
+  // This code doesn't use orientation info, so we'll ignore the
+  // headers.
+  // We'll use spm code to copy the headers in spm style.
+
+  itk::ImageToImageFilterCommon::SetGlobalDefaultCoordinateTolerance(1000.0);
+  itk::ImageToImageFilterCommon::SetGlobalDefaultDirectionTolerance(1000.0);
 
   doSeg<short, dimension>(CmdLineObj);
 

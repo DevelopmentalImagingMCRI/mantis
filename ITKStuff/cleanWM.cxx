@@ -138,8 +138,16 @@ int main(int argc, char * argv[])
   ParseCmdLine(argc, argv, CmdLineObj);
 
   const int dimension = 3;
-  //itk::ImageToImageFilterCommon::SetGlobalDefaultCoordinateTolerance(1.0);
-  itk::ImageToImageFilterCommon::SetGlobalDefaultDirectionTolerance(1.0);
+  // These tolerances are being set high because we rely on spm to pass in
+  // appropriate data. Problems arise because spm uses the sform when
+  // the sform and qform are different while ITK seems to use the
+  // qform.
+  // This code doesn't use orientation info, so we'll ignore the
+  // headers.
+  // We'll use spm code to copy the headers in spm style.
+
+  itk::ImageToImageFilterCommon::SetGlobalDefaultCoordinateTolerance(1000.0);
+  itk::ImageToImageFilterCommon::SetGlobalDefaultDirectionTolerance(1000.0);
   doFilt<float, dimension>(CmdLineObj);
 
   return(EXIT_SUCCESS);
