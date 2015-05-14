@@ -26,7 +26,8 @@ for k=1:numel(job.vols)
     command=[exe ' -i ' T2 ' -m ' WScsffile  ' -o ' OUTNAME ];
     system(command);
     outnames{k}=OUTNAME;
-    
+    mantisCopyHeader(WScsffile, OUTNAME);
+
 end
 
 

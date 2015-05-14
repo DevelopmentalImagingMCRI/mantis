@@ -28,6 +28,7 @@ for k=1:numel(job.vols)
     command=[exe ' --input ' T2 ' --csf ' CSF ' --grey ' GM ' --outputprefix ' OUTPREF];
     system(command);
     outnames{k}=fullfile(srcdir, Phase2Dir, [corename SUFF ext]);
+    mantisCopyHeader(CSF, outnames{k});
     T2names{k}=T2;
 end
 
