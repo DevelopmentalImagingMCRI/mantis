@@ -25,7 +25,8 @@ mantis.opts.tpm2components = 9;
 
 % ITK code
 %=======================================================================
-mantis.opts.itk       = {fullfile(spm('dir'),'toolbox','mantis', 'ITK_Code', 'Code', 'Build')}; % Itk scripts
+mantis.opts.itk       = {fullfile(spm('dir'),'toolbox','mantis', 'ITKStuff', ...
+    'Code', ['Build' computer], 'MANTiS-build', 'bin')}; % Itk binaries
 
 %=======================================================================
 % Folder names

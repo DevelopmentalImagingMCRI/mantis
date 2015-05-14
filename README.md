@@ -1,22 +1,70 @@
-# MANTis
+# MANTiS
 ========
 
 The morphogical adaptive neonate tissue segmentation toolbox for spm.
 
-Design goals:
-
-Where possible, make it look like "native" spm. When using existing
-functionality, like new segment, call the existing function to create
-the objects and modify them as required.
-
-This means we can use the existing vout callbacks and run functions.
-
-Phase 1:
-
-cfg_phase1_tissue_classification.m - calls tbx_cfg_preproc8 and
-replaces the tissue component.
+If you use this toolbox, please cite:
 
 
-Creating sub folders: 
+=================
+## Installation
 
-Need a folder creator that can use dependencies
+MANTiS uses ITK binaries that need to be built for your system, as we
+do not supply binary files. This process requires the following tools:
+
+c++ development tools (gcc/g++ on linux, available via package manager, xcode on mac, free from the app store)
+
+git version control system
+
+cmake cross platform build system.
+
+The installation process can be carried out anywhere and the resulting
+folder moved to the spm toolbox folder, or carried out directly in the
+spm toolbox folder. The following example assumes the latter,
+requiring write access to that folder.
+
+1. Fetch the package:
+
+```bash
+git clone ... mantis
+```
+
+1. Build the ITK components:
+
+The following commands use the SuperBuild process, that fetches a
+specific ITK version and builds it. This takes a while. If you know
+what you are doing you may be able to use a system version of
+ITK. Make sure you match up the installation directory with the
+SuperBuild version
+
+The build process requires cmake and git and a compiler.
+
+```bash
+cd mantis/ITKStuff
+```
+
+On linux/mac:
+```bash
+## Make a build directory with the matlab architecture in the name
+
+export ARCH=$(echo "disp(sprintf('\n%s', computer)),quit" | matlab -nojvm -nodesktop -nosplash |tail -1)
+
+mkdir Build.${ARCH} 
+```
+
+Finally, trigger a build:
+
+```bash
+cd Build.${ARCH}
+
+cmake ../SuperBuild
+## increase if you have lots of cores
+make -j2
+```
+
+executables named _segCSF_ and _cleanWM_ will be in
+```bash
+mantis/ITKStuff/Build.${ARCH}/MANTiS-build/bin/
+```
+
+
