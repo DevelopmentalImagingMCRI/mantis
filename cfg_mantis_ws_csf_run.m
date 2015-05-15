@@ -14,7 +14,8 @@ exe = fullfile(exedir, 'segCSF');
 
 
 %Phase2Dir = char(cg_mantis_get_defaults('opts.phase2'));
-SUFF='csfmask'; % is this right
+% Suffix used by segCSF
+SUFF='_csfmask'; 
 % We need to be able to process multiple structural scans
 for k=1:numel(job.vols)
     Phase1Dir = job.parent{k};
