@@ -1,5 +1,6 @@
-function job = cfg_phase1_tissue_classification
-
+function job = cfg_phase1_tissue_classification(newtemplate)
+% template is an argument for the second round of tissue classification
+% default is used if template is absent
 %% call the newsegment job creator
 try
     % spm12
@@ -107,6 +108,7 @@ tissues.name    = 'Tissues';
 tissues.values  = {tissue };
 tissues.num     = [0 Inf];
 
+if ~exist('newtemplate')
 %tissues.val     = {tissue tissue tissue tissue tissue tissue };
 tpm_nam = fullfile(char(cg_mantis_get_defaults('opts.tpm')),'NeonateTPM.nii');
 ngaus   = [2 2 2 2 2 2 2 2 2];
@@ -116,6 +118,18 @@ for k=1:numel(ngaus),
     tissue.val{2}.val    = {ngaus(k)};
     tissue.val{3}.val    = {nval{k}};
     tissues.val{k}       = tissue;
+end
+
+else
+    % use the newtemplate instead
+    vv=spm_vol(newtemplate);
+    channels = numel(vv);
+    for k=1:channels,
+        tissue.val{1}.val{1} = {[newtemplate ',' num2str(k)]};
+        tissue.val{2}.val    = {2};
+        tissue.val{3}.val    = {[1 0]};
+        tissues.val{k}       = tissue;
+    end
 end
 
 % replace the original tissue maps
