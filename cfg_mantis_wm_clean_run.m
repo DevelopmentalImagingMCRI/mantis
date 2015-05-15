@@ -12,7 +12,7 @@ exedir = char(cg_mantis_get_defaults('opts.itk'));
 % Do we need to do something for windows?
 exe = fullfile(exedir, 'cleanWM'); 
 
-%SUFF='wscsf'; % is this right
+SUFF='_csfmask'; % is this right
 % We need to be able to process multiple structural scans
 
 for k=1:numel(job.vols)
@@ -20,13 +20,13 @@ for k=1:numel(job.vols)
     Phase2Dir = job.target{k};
     T2=char(job.vols{k});
     [srcdir, imname, ext]=fileparts(T2);
-    WSCSF=fullfile(Phase2Dir, [imname '_csfmask.nii']);
+    WSCSF=fullfile(Phase2Dir, [imname SUFF '.nii']);
     %T2=fullfile( srcdir, [corename ext]);
     OUTNAME=fullfile(Phase2Dir, [imname '.nii']);
     command=[exe ' -i ' T2 ' -m ' WSCSF ' -o ' OUTNAME ];
     system(command);
     outnames{k}=OUTNAME;
-    mantisCopyHeader(WScsffile, OUTNAME);
+    mantisCopyHeader(WSCSF, OUTNAME);
 
 end
 
