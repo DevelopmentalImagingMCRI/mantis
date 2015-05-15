@@ -22,10 +22,10 @@ vols2.num     = [1 Inf];
 
 job         = cfg_exbranch;
 job.tag     = 'tissueclassif2';
-job.name    = 'Morphogical clean up of White matter';
+job.name    = 'Final spm segmentation';
 job.val     = {vols vols2};
 job.help    = {
-    'Clean of structural image. CSF prob maps is used'
+    'Tissue classification with customized template'
     };
 job.prog = @cfg_mantis_second_run;
 % We're going to return standard space only to start
