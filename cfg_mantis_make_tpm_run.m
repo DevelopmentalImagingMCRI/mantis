@@ -15,11 +15,11 @@ function res = cfg_mantis_make_tpm_run( job )
 tpmcomponents = cg_mantis_get_defaults('opts.tpmcomponents');
 
 for k=1:numel(job.vols)
-    Phase1Dir = job.parent{k}
-    Phase2Dir = job.target{k}
+    Phase1Dir = job.parent{k};
+    Phase2Dir = job.target{k};
 
-    T2=char(job.vols{k})
-    [srcdir, corename, ext]=fileparts(T2)
+    T2=char(job.vols{k});
+    [srcdir, corename, ext]=fileparts(T2);
     
     %TPM=char(job.vols{k});
      
@@ -74,7 +74,7 @@ for k=1:numel(job.vols)
         delete(Vo(i).fname);
     end
     clear Ytisnorm;
-    outnames{k}=fname
+    outnames{k}=fname;
 %     for j=1:tpmcomponents
 %         subtissuemap{k,j}=[fname ',' sprintf('%d',j)];
 %     end

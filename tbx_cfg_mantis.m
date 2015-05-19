@@ -141,7 +141,14 @@ batchrun.val     = {idir};
 batchrun.help    = {'Segmentation volumes.'};
 batchrun.prog = @(job)cg_mantis_jobs('batchrun',job);       
 
-p1test = cfg_phase1_tissue_classification;
+p1seg = cfg_phase1_tissue_classification;
+% This is for phase 2. There needs to be
+% a matching tag in order for jobs to run
+% Thus we need a dummy entry here for the multi-subject
+% version to run from inside 'finalseg'
+p2seg = cfg_phase1_tissue_classification;
+p2seg.tag = 'phase2';
+p2seg.name = 'Mantis: Phase 2 tissue classification';
 mover=cfg_mantis_movetosubdir;
 wscsf=cfg_mantis_ws_csf;
 wmclean=cfg_mantis_wm_clean;
@@ -159,7 +166,7 @@ job.tag     = 'mantis';
 job.name    = 'Morphological adaptive neonatal tissue segmentation';
 job.help    = {'Help needed'};
 %job.values  = {segrun1 segcsf wmclean segrun2 hardlabel calvol batchrun};
-job.values={p1test mover wscsf wmclean mantisfolderinfo deformations template firstnorm maketpm finalseg};
+job.values={p1seg mover wscsf wmclean mantisfolderinfo deformations template firstnorm maketpm p2seg finalseg};
 
 %-------------------------------------------------------------------------
 % function dep = vout_spmrun1(job)

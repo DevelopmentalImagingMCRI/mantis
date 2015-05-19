@@ -32,7 +32,6 @@ mantis.opts.itk       = {fullfile(spm('dir'),'toolbox','mantis', 'ITKStuff', ...
 % Folder names
 mantis.opts.phase1 = {'Phase1'};
 mantis.opts.phase2 = {'Phase2'};
-mantis.opts.phase3 = {'Phase3'};
 
 
 % Shell scripts
