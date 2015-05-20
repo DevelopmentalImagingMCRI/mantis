@@ -1,4 +1,4 @@
-function job = cfg_mantis_make_temp
+function job = cg_mantis_make_temp
 vols         = cfg_files;
 vols.tag     = 'vols';
 vols.name    = 'Volumes';
@@ -36,7 +36,7 @@ job.val     = {vols phase1Dir phase2Dir};
 job.help    = {
     'Make subject specific template using deformed template tissue and WS of csf'
     };
-job.prog = @cfg_mantis_make_tpm_run;
+job.prog = @cg_mantis_make_tpm_run;
 job.vout = @vout;
 
 end

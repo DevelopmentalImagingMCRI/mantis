@@ -1,4 +1,4 @@
-function job = cfg_mantis_movetosubdir
+function job = cg_mantis_movetosubdir
 % modified version of the basicio tools that moves files to a subfolder,
 % creating the folder if necessary. Can't see a way to do this with
 % the existing tools.
@@ -22,8 +22,8 @@ file_move.tag     = 'file_move';
 file_move.name    = 'Move/Delete Files';
 file_move.val     = {files subfolder };
 file_move.help    = {'Move files to subfolder.'};
-file_move.prog = @cfg_mantis_movetosubdir_run;
+file_move.prog = @cg_mantis_movetosubdir_run;
 % Outputs are new locations
-file_move.vout = @cfg_mantis_movetosubdir_vout;
+file_move.vout = @cg_mantis_movetosubdir_vout;
 job=file_move;
 end

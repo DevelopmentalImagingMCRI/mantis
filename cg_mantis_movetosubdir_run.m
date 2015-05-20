@@ -1,4 +1,4 @@
-function cfg_mantis_movetosubdir_run(job)
+function cg_mantis_movetosubdir_run(job)
 % need to loop over every file
 % job should have files and subfolder
 

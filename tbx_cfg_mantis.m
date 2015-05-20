@@ -141,22 +141,22 @@ batchrun.val     = {idir};
 batchrun.help    = {'Segmentation volumes.'};
 batchrun.prog = @(job)cg_mantis_jobs('batchrun',job);       
 
-p1seg = cfg_phase1_tissue_classification;
+p1seg = cg_phase1_tissue_classification;
 % This is for phase 2. There needs to be
 % a matching tag in order for jobs to run
 % Thus we need a dummy entry here for the multi-subject
 % version to run from inside 'finalseg'
-p2seg = cfg_phase1_tissue_classification;
+p2seg = cg_phase1_tissue_classification;
 p2seg.tag = 'phase2';
 p2seg.name = 'Mantis: Phase 2 tissue classification';
-mover=cfg_mantis_movetosubdir;
-wscsf=cfg_mantis_ws_csf;
-wmclean=cfg_mantis_wm_clean;
+mover=cg_mantis_movetosubdir;
+wscsf=cg_mantis_ws_csf;
+wmclean=cg_mantis_wm_clean;
 mantisfolderinfo = cg_mantis_phases;
 deformations=cg_mantis_deformations;
 template=cg_mantis_template;
 firstnorm=cg_mantis_firstnorm;
-maketpm=cfg_mantis_make_tpm;
+maketpm=cg_mantis_make_tpm;
 finalseg=cg_mantis_second_classification;
 % ---------------------------------------------------------------------
 % mantis Adaptive-Neonatal-Brain-Segmentation

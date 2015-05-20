@@ -36,7 +36,7 @@ job.val     = {vols vols2 vols3};
 job.help    = {
     'Tissue classification with customized template'
     };
-job.prog = @cfg_mantis_second_run;
+job.prog = @cg_mantis_second_run;
 job.vout = @vout;
 
 end
@@ -65,7 +65,7 @@ dep=cdep;
 end
 
 
-function res = cfg_mantis_second_run(job)
+function res = cg_mantis_second_run(job)
     
 if numel(job.vols) ~= numel(job.tmaps)
     error('Number of scans does not match number of templates')

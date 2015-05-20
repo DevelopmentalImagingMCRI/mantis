@@ -1,4 +1,4 @@
-function dep = cfg_mantis_movetosubdir_vout(job)
+function dep = cg_mantis_movetosubdir_vout(job)
 
 dep = cfg_dep;
 dep.sname = 'Moved files';

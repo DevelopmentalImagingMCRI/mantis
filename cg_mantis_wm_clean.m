@@ -1,9 +1,8 @@
-function job = cfg_mantis_ws_csf
-%cfg_mantis_ws_csf batch setup
+function job = cg_mantis_wm_clean
 vols         = cfg_files;
 vols.tag     = 'vols';
 vols.name    = 'Volumes';
-vols.help    = {['Select GM map from phase 1. Other images will be ' ...
+vols.help    = {['Select WS CSF map from phase 2. Other images will be ' ...
                  'figured out.']};
 vols.filter = 'image';
 vols.ufilter = '.*';
@@ -19,7 +18,7 @@ phase1Dir.name    = 'Parent Directory';
 phase1Dir.help    = {'Directory where the Phase1 results were put.'};
 phase1Dir.filter = 'dir';
 phase1Dir.ufilter = '.*';
-phase1Dir.num     = [1 Inf];
+phase1Dir.num     = [1 inf];
 
 phase2Dir         = cfg_files;
 phase2Dir.tag     = 'target';
@@ -29,14 +28,15 @@ phase2Dir.filter = 'dir';
 phase2Dir.ufilter = '.*';
 phase2Dir.num     = [1 Inf];
 
+
 job         = cfg_exbranch;
-job.tag     = 'wscsf';
-job.name    = 'Watershed segmentation of CSF';
+job.tag     = 'wmclean';
+job.name    = 'Morphogical clean up of White matter';
 job.val     = {vols phase1Dir phase2Dir};
 job.help    = {
-    'Segmentation of structural image using the watershed transform. GM and CSF prob maps are used'
+    'Clean of structural image. CSF prob maps is used'
     };
-job.prog = @cfg_mantis_ws_csf_run;
+job.prog = @cg_mantis_wm_clean_run;
 job.vout = @vout;
 
 end
@@ -44,13 +44,8 @@ end
 function dep = vout(job)
 % The output of this job is always the same
 cdep = cfg_dep;
-cdep(end).sname      = 'Watershed csf seg';
-cdep(end).src_output = substruct('.','csfseg','()',{':'});
-cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-
-cdep(end+1) = cfg_dep;
-cdep(end).sname      = 'Structural';
-cdep(end).src_output = substruct('.','structural','()',{':'});
+cdep(end).sname      = 'Clean up of white matter';
+cdep(end).src_output = substruct('.','wmclean','()',{':'});
 cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
 
 dep=cdep;

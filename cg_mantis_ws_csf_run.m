@@ -1,4 +1,4 @@
-function res = cfg_mantis_ws_csf_run( job )
+function res = cg_mantis_ws_csf_run( job )
 %cfg_mantis_ws_run Watershed segmentation of csf using phase1 tissue maps
 %   Calls external ITK code
 

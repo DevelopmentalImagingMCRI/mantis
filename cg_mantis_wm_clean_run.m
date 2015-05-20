@@ -1,5 +1,5 @@
-function res = cfg_mantis_wm_clean_run( job )
-%cfg_mantis_ws_run Watershed segmentation of csf using phase1 tissue maps
+function res = cg_mantis_wm_clean_run( job )
+%cg_mantis_wm_clean_run Morphological cleanup of wm
 %   Calls external ITK code
 
 % job contains the GM map from phase1 and the name of the subfolder
