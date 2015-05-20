@@ -75,7 +75,7 @@ for k=1:numel(job.vols)
    t2=char(job.vols{k});
    tmap=char(job.tmaps{k});
    
-   guijob = cfg_phase1_tissue_classification(tmap);
+   guijob = cg_phase1_tissue_classification(tmap);
    guijob.tag = 'phase2';
    guijob.name = 'Mantis: phase2 tissue classification';
    % now we harvest it to produce a job object

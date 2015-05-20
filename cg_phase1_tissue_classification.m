@@ -1,4 +1,4 @@
-function job = cfg_phase1_tissue_classification(newtemplate)
+function job = cg_phase1_tissue_classification(newtemplate)
 % template is an argument for the second round of tissue classification
 % default is used if template is absent
 %% call the newsegment job creator
