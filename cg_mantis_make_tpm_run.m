@@ -75,15 +75,15 @@ for k=1:numel(job.vols)
     end
     clear Ytisnorm;
     outnames{k}=fname;
-%     for j=1:tpmcomponents
-%         subtissuemap{k,j}=[fname ',' sprintf('%d',j)];
-%     end
+     for j=1:tpmcomponents
+         subtissuemap{k,j}=[fname ',' sprintf('%d',j)];
+     end
 end    
 
 % result is the segmented csf. We need to return a structure containing
 % this filename
-res.subtissuemap = outnames;
-%res.subrissuemap = subtissuemap;
+res.tissuemap = outnames;
+res.subrissuemap = subtissuemap;
 
 end
 

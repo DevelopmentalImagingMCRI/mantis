@@ -1,0 +1,15 @@
+Note for future development.
+===========================
+
+We've tried to minimize the hard coding of template details, but
+it still shows up periodically. The issue is that the batch system can't
+dynamically query the number of image channels, so as soon as a template
+is passed between stages as single image, rather than as a set of channels,
+we lose information about how many channels there are.
+
+The 9 channels are currently hard coded into the vout function of 
+cg_mantis_make_tpm.
+
+An example of how to get around it is in the phase2 segmentation - it 
+takes an input which only serves to provide a channel count - it is
+a bit ugly.

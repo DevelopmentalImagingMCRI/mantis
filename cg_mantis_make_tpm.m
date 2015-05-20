@@ -45,9 +45,11 @@ function dep = vout(job)
 % The output of this job is always the same
 cdep = cfg_dep;
 cdep(end).sname      = 'Subject template';
-cdep(end).src_output = substruct('.','subtissuemap','()',{':'});
+cdep(end).src_output = substruct('.','tissuemap','()',{':'});
 cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
 dep=cdep;
+
+%% Note - this will need to change if the number of template channels changes
 
 cdep (end+1) = cfg_dep;
 cdep(end).sname      = 'Subject template channel 1';
