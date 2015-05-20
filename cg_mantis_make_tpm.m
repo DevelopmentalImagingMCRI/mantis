@@ -50,60 +50,62 @@ cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
 dep=cdep;
 
 %% Note - this will need to change if the number of template channels changes
-
-cdep (end+1) = cfg_dep;
-cdep(end).sname      = 'Subject template channel 1';
-cdep(end).src_output = substruct('.','subtissuemap','()',{'1'});
-cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-dep=cdep;
-
-cdep (end+1) = cfg_dep;
-cdep(end).sname      = 'Subject template channel 2';
-cdep(end).src_output = substruct('.','subtissuemap','()',{'2'});
-cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-dep=cdep;
-
-cdep (end+1) = cfg_dep;
-cdep(end).sname      = 'Subject template channel 3';
-cdep(end).src_output = substruct('.','subtissuemap','()',{'3'});
-cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-dep=cdep;
-
-cdep (end+1) = cfg_dep;
-cdep(end).sname      = 'Subject template channel 4';
-cdep(end).src_output = substruct('.','subtissuemap','()',{'4'});
-cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-dep=cdep;
-
-cdep (end+1) = cfg_dep;
-cdep(end).sname      = 'Subject template channel 5';
-cdep(end).src_output = substruct('.','subtissuemap','()',{'5'});
-cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-dep=cdep;
-
-cdep (end+1) = cfg_dep;
-cdep(end).sname      = 'Subject template channel 6';
-cdep(end).src_output = substruct('.','subtissuemap','()',{'6'});
-cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-dep=cdep;
-
-cdep (end+1) = cfg_dep;
-cdep(end).sname      = 'Subject template channel 7';
-cdep(end).src_output = substruct('.','subtissuemap','()',{'7'});
-cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-dep=cdep;
-
-cdep (end+1) = cfg_dep;
-cdep(end).sname      = 'Subject template channel 8';
-cdep(end).src_output = substruct('.','subtissuemap','()',{'8'});
-cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-dep=cdep;
-
-cdep (end+1) = cfg_dep;
-cdep(end).sname      = 'Subject template channel 9';
-cdep(end).src_output = substruct('.','subtissuemap','()',{'9'});
-cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-dep=cdep;
+% It is not quite right, and we don't use the channel information, so 
+% leave it out for now.
+% 
+% cdep (end+1) = cfg_dep;
+% cdep(end).sname      = 'Subject template channel 1';
+% cdep(end).src_output = substruct('.','subtissuemap','()',{'1'});
+% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
+% dep=cdep;
+% 
+% cdep (end+1) = cfg_dep;
+% cdep(end).sname      = 'Subject template channel 2';
+% cdep(end).src_output = substruct('.','subtissuemap','()',{'2'});
+% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
+% dep=cdep;
+% 
+% cdep (end+1) = cfg_dep;
+% cdep(end).sname      = 'Subject template channel 3';
+% cdep(end).src_output = substruct('.','subtissuemap','()',{'3'});
+% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
+% dep=cdep;
+% 
+% cdep (end+1) = cfg_dep;
+% cdep(end).sname      = 'Subject template channel 4';
+% cdep(end).src_output = substruct('.','subtissuemap','()',{'4'});
+% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
+% dep=cdep;
+% 
+% cdep (end+1) = cfg_dep;
+% cdep(end).sname      = 'Subject template channel 5';
+% cdep(end).src_output = substruct('.','subtissuemap','()',{'5'});
+% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
+% dep=cdep;
+% 
+% cdep (end+1) = cfg_dep;
+% cdep(end).sname      = 'Subject template channel 6';
+% cdep(end).src_output = substruct('.','subtissuemap','()',{'6'});
+% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
+% dep=cdep;
+% 
+% cdep (end+1) = cfg_dep;
+% cdep(end).sname      = 'Subject template channel 7';
+% cdep(end).src_output = substruct('.','subtissuemap','()',{'7'});
+% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
+% dep=cdep;
+% 
+% cdep (end+1) = cfg_dep;
+% cdep(end).sname      = 'Subject template channel 8';
+% cdep(end).src_output = substruct('.','subtissuemap','()',{'8'});
+% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
+% dep=cdep;
+% 
+% cdep (end+1) = cfg_dep;
+% cdep(end).sname      = 'Subject template channel 9';
+% cdep(end).src_output = substruct('.','subtissuemap','()',{'9'});
+% cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
+% dep=cdep;
 
 
 end
