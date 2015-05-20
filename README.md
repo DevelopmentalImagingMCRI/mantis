@@ -26,7 +26,10 @@ requiring write access to that folder.
 1. Fetch the package:
 
 ```bash
-git clone ... mantis
+git clone git@neuro.erc.monash.edu.au:richard.beare/mantis.git
+cd mantis
+git submodule init
+git submodule update
 ```
 
 1. Build the ITK components:
@@ -40,7 +43,7 @@ SuperBuild version
 The build process requires cmake and git and a compiler.
 
 ```bash
-cd mantis/ITKStuff
+cd ITKStuff
 ```
 
 On linux/mac:
