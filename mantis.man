@@ -43,3 +43,15 @@
 % 7. Cerebullum
 % 8. Brain stem
 % __________________________________________________________________________
+%
+% ======================================================================
+% Other notes
+% =======================================================================
+%
+% The batch file that implements the complete pipeline is 
+% mantis_complete_segmentation.m
+% You can load this manually from the batch editor, if you prefer.
+%
+% If you change the template be sure to update cg_mantis_defaults.m,
+% especially the channel count, which is used in various stages in the
+% pipeline.
