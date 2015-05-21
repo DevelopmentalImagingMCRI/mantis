@@ -1,4 +1,4 @@
-function job = cg_mantis_make_temp
+function job = cg_mantis_make_tpm
 vols         = cfg_files;
 vols.tag     = 'vols';
 vols.name    = 'Volumes';
