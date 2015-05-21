@@ -17,6 +17,11 @@
 % 
 % The pipeline is available from the mantis option under the Toolbox button
 % in the main SPM menu.
+%
+% Selecting the "mantis segmentation pipeline" menu item will launch
+% the batch editor with the mantis batch. Use the file selector at the
+% top of the page to choose files for processing.
+% 
 % Components used to build the pipeline are available under the tools menu
 % in the batch editor.
 %
