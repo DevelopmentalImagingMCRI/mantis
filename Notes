@@ -13,3 +13,5 @@ cg_mantis_make_tpm.
 An example of how to get around it is in the phase2 segmentation - it 
 takes an input which only serves to provide a channel count - it is
 a bit ugly.
+
+The alternative is to use the global setting in the mantis options....

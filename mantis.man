@@ -19,6 +19,11 @@
 % in the main SPM menu.
 % Components used to build the pipeline are available under the tools menu
 % in the batch editor.
+%
+% Output images are placed in subdirectories of the original folder named
+% Phase1 and Phase2.
+% All input images must be in the same folder.
+%
 % ==========================================================================
 % Segmentation method
 % ==========================================================================
