@@ -70,4 +70,11 @@ executables named _segCSF_ and _cleanWM_ will be in
 mantis/ITKStuff/Build.${ARCH}/MANTiS-build/bin/
 ```
 
+You can delete build files:
+
+```bash
+
+rm -rf ITK-build ITK-prefix ITK
+
+```
 
