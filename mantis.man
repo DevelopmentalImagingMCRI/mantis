@@ -12,15 +12,20 @@
 % ==========================================================================
 % Description
 % ==========================================================================
-%
-%
-%
+% This toolbox implements the tissue classification method for T2 weighted
+% MRI scans of neonates described in ....
+% 
+% The pipeline is available from the mantis option under the Toolbox button
+% in the main SPM menu.
+% Components used to build the pipeline are available under the tools menu
+% in the batch editor.
 % ==========================================================================
 % Segmentation method
 % ==========================================================================
-%
-%
-%
+% The approach uses a multiphase approach, begining with an spm unified segmentation
+% using a neonate template, followed by morphological segmentation of CSF
+% to create a customized template, cleanup of hyperintense WM and a second
+% pass of unified segmentation using the customized template.
 % ==========================================================================
 % Order of tissue type
 % ==========================================================================
