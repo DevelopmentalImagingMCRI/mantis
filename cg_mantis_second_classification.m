@@ -20,19 +20,10 @@ vols2.ufilter = '.*';
 vols2.num     = [1 Inf];
 
 
-vols3         = cfg_files;
-vols3.tag     = 'origtmaps';
-vols3.name    = 'Standard tissue map';
-vols3.help    = {['Phase 1 tissue maps (to indicate channel count)']};
-vols3.filter = 'image';
-vols3.ufilter = '.*';
-vols3.num     = [1 Inf];
-
-
 job         = cfg_exbranch;
 job.tag     = 'tissueclassif2';
 job.name    = 'Final spm segmentation';
-job.val     = {vols vols2 vols3};
+job.val     = {vols vols2};
 job.help    = {
     'Tissue classification with customized template'
     };
@@ -51,14 +42,13 @@ cdep(end).sname      = 'Structural';
 cdep(end).src_output = substruct('.','structural','()',{':'});
 cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
 
-if ~strcmp(job.origtmaps,'<UNDEFINED>')
-    
-    for i=1:numel(job.origtmaps),
-        cdep(end+1) = cfg_dep;
-        cdep(end).sname      = sprintf('Classification with patient specific template c%d', i);
-        cdep(end).src_output = substruct('.','patientspecifictemplate','{}',{i});
-        cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
-    end
+channelcount = cg_mantis_get_defaults('opts.tpmcomponents');
+
+for i=1:channelcount,
+    cdep(end+1) = cfg_dep;
+    cdep(end).sname      = sprintf('Classification with patient specific template c%d', i);
+    cdep(end).src_output = substruct('.','patientspecifictemplateseg','{}',{i});
+    cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
 end
 dep=cdep;
 
@@ -96,7 +86,7 @@ for k=1:numel(job.vols)
    for i=1:tissueclasses
       [path, name, ext ] = fileparts(t2);
       thisone = fullfile(path, ['c' sprintf('%d', i) name ext]);
-      res.patientspecifictemplate{i}{k}= thisone;
+      res.patientspecifictemplateseg{i}{k}= thisone;
    end
    res.structural{k}=t2;
 end
