@@ -24,6 +24,7 @@ template=cg_mantis_template;
 firstnorm=cg_mantis_firstnorm;
 maketpm=cg_mantis_make_tpm;
 finalseg=cg_mantis_second_classification;
+hardseg1=cg_mantis_hardseg;
 % ---------------------------------------------------------------------
 % mantis Adaptive-Neonatal-Brain-Segmentation
 % ---------------------------------------------------------------------
@@ -32,7 +33,7 @@ job.tag     = 'mantis';
 job.name    = 'Morphological adaptive neonatal tissue segmentation';
 job.help    = {'Help needed'};
 %job.values  = {segrun1 segcsf wmclean segrun2 hardlabel calvol batchrun};
-job.values={p1seg mover wscsf wmclean mantisfolderinfo deformations template firstnorm maketpm p2seg finalseg};
+job.values={p1seg mover wscsf wmclean mantisfolderinfo deformations template firstnorm maketpm p2seg finalseg hardseg1};
 
 %-------------------------------------------------------------------------
 % function dep = vout_spmrun1(job)
