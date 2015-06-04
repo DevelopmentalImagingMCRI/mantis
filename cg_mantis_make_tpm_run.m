@@ -53,9 +53,12 @@ for k=1:numel(job.vols)
     Ycsfcom(:,:,:,2)=Ywscsf;
     Ycsf=squeeze(max(Ycsfcom, [], 4));
       
-    %Put CSF to tissue map
-    Ytis(:,:,:,numt+1)=Ycsf;
-        
+    %Put CSF to tissue map at position number 3        
+    YtisN = Ytis;
+    YtisN(:,:,:,3)=Ycsf;
+    YtisN(:,:,:,4:tpmcomponents) = Ytis(:,:,:,3:numt);
+    Ytis=YtisN;
+    clearvars YtisN;
     %Normalise tissues
     Ysum=sum(Ytis,4);
         
