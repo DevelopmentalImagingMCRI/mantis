@@ -89,7 +89,7 @@ for k=1:numel(job.vols)
     % components
     % why do we do the fixing of wm above, which is caused by resetting
     % brightness if we are going to delete isolated parts?
-    [whitelab, whitecc] = spm_bwlabel(double(hardwhite2), 26);
+    [whitelab, whitecc] = spm_bwlabel(double(hardwhite2), 6);
     % doesn't appear to be nice connected component analysis tool in spm
     % some other spm functions use this approach
     ccs = histc(whitelab(:),(0:whitecc) + 0.5);
@@ -105,20 +105,20 @@ for k=1:numel(job.vols)
         [biggest2, bigIdx2] = max(ccs);
         largestwhite = largestwhite | (whitelab == bigIdx2);
     end
+    g=hardV(1);
+    g.fname='/tmp/largest.nii';
+    spm_write_vol(g, double(largestwhite));
     % combine the results into a single hard segmentation image
     % we've only fiddled with labels 1,2,3, so get rid of the original
     % versions of these from mxProbIdx and replace with the new ones
-        max(mxProbIdx(:))
 
     mxProbIdx(find(mxProbIdx <= 3))=0;
-        max(mxProbIdx(:))
     mxProbIdx(find(hardcsf2))=3;
-    max(mxProbIdx(:))
     mxProbIdx(find(largestwhite))=2;
-    max(mxProbIdx(:))
     mxProbIdx(find(hardgrey2))=1;
-    max(mxProbIdx(:))
     
+    % bits of white we've ditched become csf
+    mxProbIdx(find(hardwhite2 & (~largestwhite)))=3;
     % finally save
     outvol = hardV(1);
     outvol.fname=oname;
