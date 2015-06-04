@@ -53,9 +53,12 @@ for k=1:numel(job.vols)
     Ycsfcom(:,:,:,2)=Ywscsf;
     Ycsf=squeeze(max(Ycsfcom, [], 4));
       
-    %Put CSF to tissue map
-    Ytis(:,:,:,numt+1)=Ycsf;
-        
+    %Put CSF to tissue map at position number 3        
+    YtisN = Ytis;
+    YtisN(:,:,:,3)=Ycsf;
+    YtisN(:,:,:,4:tpmcomponents) = Ytis(:,:,:,3:numt);
+    Ytis=YtisN;
+    clearvars YtisN;
     %Normalise tissues
     Ysum=sum(Ytis,4);
         
@@ -63,8 +66,11 @@ for k=1:numel(job.vols)
     for i = 1:numt+1
         Ytisnorm(:,:,:,i) = Ytis(:,:,:,i)./Ysum;
         %Vo(i).fname = ['norm_' num2str(i) '_' Vtpm(i).fname ];
-        Vo(i).fname = fullfile(Phase2Dir, ['norm_atlas_' num2str(i) '_' corename ext]);
-        Vo(i) = spm_write_vol(Vo(i),squeeze(Ytisnorm(:,:,:,i)));
+        % only copy the first one so the offsets are OK for different
+        % images
+        Vv = Vtpm(1);
+        Vv.fname = fullfile(Phase2Dir, ['norm_atlas_' num2str(i) '_' corename ext]);
+        Vo(i) = spm_write_vol(Vv,squeeze(Ytisnorm(:,:,:,i)));
     end
     
     fname = fullfile(Phase2Dir, ['norm_atlas_' corename ext]);

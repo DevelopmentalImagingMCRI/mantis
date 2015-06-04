@@ -11,9 +11,10 @@
 #include <itkLabelStatisticsImageFilter.h>
 #include <itkNaryMaximumImageFilter.h>
 #include <itkGradientMagnitudeRecursiveGaussianImageFilter.h>
+#include <itkSmoothingRecursiveGaussianImageFilter.h>
 #include <itkMorphologicalWatershedFromMarkersImageFilter.h>
 #include <itkBinaryShapeOpeningImageFilter.h>
-
+#include <itkGradientMagnitudeImageFilter.h>
 #ifdef IFTWS
 #include "itkIFTWatershedFromMarkersImageFilter.h"
 #endif
@@ -98,6 +99,41 @@ void ParseCmdLine(int argc, char* argv[],
 //////////////////////////////////////////////////////////////
 #include "vibes_common.h"
 /////////////////////////////////////////////////////////////////
+template <class RawImType>
+typename RawImType::Pointer scaleSpaceSmooth(typename RawImType::Pointer input, std::vector<float> scales)
+{
+  // smooth at different scales and take a max
+  typename RawImType::Pointer res, tmp;
+
+  itk::Instance< itk::SmoothingRecursiveGaussianImageFilter< RawImType, RawImType > > Smoother;
+  itk::Instance< itk::MaximumImageFilter<RawImType, RawImType, RawImType> > Max;
+
+  if (scales.size() == 0)
+    {
+    std::cerr << "At least one smoothing scale must be specified" << std::endl;
+    return(0);
+    }
+  Smoother->SetInput(input);
+  Smoother->SetNormalizeAcrossScale(true);
+  Smoother->SetSigma(scales[0]);
+  res = Smoother->GetOutput();
+  res->Update();
+  res->DisconnectPipeline();
+
+  for (unsigned i=1; i<scales.size(); i++)
+    {
+    Smoother->SetSigma(scales[i]);
+    Max->SetInput(res);
+    Max->SetInput2(Smoother->GetOutput());
+    tmp=Max->GetOutput();
+    tmp->Update();
+    tmp->DisconnectPipeline();
+    res=tmp;
+    }
+  return(res);
+}
+
+/////////////////////////////////////////////////////////////////
 template <class PixType, int dimension>
 void doSeg(const CmdLineType &CmdLineObj)
 {
@@ -154,15 +190,19 @@ void doSeg(const CmdLineType &CmdLineObj)
   for (unsigned i = 0; i < ImageType::ImageDimension; i++) {
     if (T2->GetSpacing()[i] < minvxsz) minvxsz= T2->GetSpacing()[i];
   }
-  itk::Instance< itk::GradientMagnitudeRecursiveGaussianImageFilter<ImageType, ImageType > > GradFilt;
+  //itk::Instance< itk::GradientMagnitudeRecursiveGaussianImageFilter<ImageType, ImageType > > GradFilt;
+  itk::Instance <itk::GradientMagnitudeImageFilter<ImageType, ImageType> > GradFilt;
   GradFilt->SetInput(T2);
-  GradFilt->SetSigma(minvxsz/2);
-  // std::vector<float> scales;
-  // scales.push_back(0.25);
-  // scales.push_back(0.5);
+  GradFilt->SetUseImageSpacingOn();
+  //GradFilt->SetSigma(minvxsz/2);
+  //GradFilt->SetSigma(0.05);
+  // use only two scales - very fine, and related to
+  // voxel size.
+  std::vector<float> scales;
+  scales.push_back(0.25);
+  scales.push_back(minvxsz);
   // //scales.push_back(1);
-
-  // IPtr grad = scaleSpaceSmooth<ImageType>(GradFilt->GetOutput(), scales);
+  IPtr grad = scaleSpaceSmooth<ImageType>(GradFilt->GetOutput(), scales);
   itk::Instance< itk::MorphologicalWatershedFromMarkersImageFilter<ImageType, MaskImType> > WSFilt;
   WSFilt->SetInput(GradFilt->GetOutput());
   WSFilt->SetMarkerImage(MaxFilt->GetOutput());
