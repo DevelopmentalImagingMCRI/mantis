@@ -45,9 +45,9 @@ for k=1:numel(job.vols)
     
     mxProbIdx(find(bg)) = 0;
     
-    brainascsf = bg .* t2V;
+    %brainascsf = bg .* t2V;
     
-    mxProbIdx = mxProbIdx + brainascsf;
+    %mxProbIdx = mxProbIdx + brainascsf;
  
     % previous bit is same as phase 1 hardseg - could refactor
     % Assumes that the ordering in the template is the same

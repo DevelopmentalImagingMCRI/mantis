@@ -34,9 +34,9 @@ for k=1:numel(job.vols)
     
     mxProbIdx(find(bg)) = 0;
     
-    brainascsf = bg .* t2V;
+    %brainascsf = bg .* t2V;
     
-    mxProbIdx = mxProbIdx + brainascsf;
+    %mxProbIdx = mxProbIdx + brainascsf;
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     for J=1:3,
