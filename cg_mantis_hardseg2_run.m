@@ -59,23 +59,24 @@ for k=1:numel(job.vols)
     % with wm - these correspond to isolated bits of wm
     % find voxels that were wm in phase 1, but not phase 2.
     hardwhite2 = (mxProbIdx == 2);
-    hardwhite1 = (hardY(:,:,:,2)==1);
+    hardwhite1 = (hardY(:,:,:,2)>0.5);
     
     hwdiff = hardwhite1 & (~hardwhite2);
     clearvars hardwhite1;
     % find voxels that were gm in phase 2 but not phase 1
     hardgrey2 = (mxProbIdx == 1);
-    hardgrey1 = (hardY(:,:,:,1)==1);
+    hardgrey1 = (hardY(:,:,:,1)>0.5);
     gmdiff = hardgrey2 & (~hardgrey1);
-    clearvars hardgrey1;
     
+    clearvars hardgrey1;
+   
     g2white = gmdiff & hwdiff;
     
     % similar kind of thing with csf
     hardcsf2 = (mxProbIdx == 3);
-    hardcsf1 = (hardY(:,:,:,3)==1);
+    hardcsf1 = (hardY(:,:,:,3)>0.5);
     
-    csfdiff = hardcsf1 & (~hardcsf2);
+    csfdiff = hardcsf1 & (hardcsf2==0);
     clearvars hardcsf1;
     
     g2csf = gmdiff & csfdiff;
@@ -84,7 +85,7 @@ for k=1:numel(job.vols)
     hardgrey2 = hardgrey2 & (~(g2csf | g2white));
     hardwhite2 = hardwhite2 | g2white;
     hardcsf2 = hardcsf2 | g2csf;
-    
+
     % Now we do more fixing of other WM error by using the largest
     % components
     % why do we do the fixing of wm above, which is caused by resetting
@@ -106,8 +107,6 @@ for k=1:numel(job.vols)
         largestwhite = largestwhite | (whitelab == bigIdx2);
     end
     g=hardV(1);
-    g.fname='/tmp/largest.nii';
-    spm_write_vol(g, double(largestwhite));
     % combine the results into a single hard segmentation image
     % we've only fiddled with labels 1,2,3, so get rid of the original
     % versions of these from mxProbIdx and replace with the new ones
