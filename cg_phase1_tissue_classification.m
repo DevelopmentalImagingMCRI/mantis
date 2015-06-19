@@ -2,11 +2,13 @@ function job = cg_phase1_tissue_classification(newtemplate)
 % template is an argument for the second round of tissue classification
 % default is used if template is absent
 %% call the newsegment job creator
+spm8=false;
 try
     % spm12
     newsegmentjob=spm_cfg_preproc8;
 catch
     % spm 8
+    spm8=true;
     newsegmentjob=tbx_cfg_preproc8;
 end    
 %% Change the tissue maps
@@ -134,7 +136,12 @@ end
 
 % replace the original tissue maps
 newsegmentjob.val{2}=tissues;
-newsegmentjob.val{3}.val{5}.val={[1 1]}; %Deformation fields
+if spm8,
+    newsegmentjob.val{3}.val{5}.val={[1 1]}; %Deformation fields
+else
+    % spm12 has some extra fields
+    newsegmentjob.val{3}.val{7}.val={[1 1]}; %Deformation fields
+end
 newsegmentjob.tag = 'phase1';
 newsegmentjob.name = 'Mantis: Phase 1 tissue classification';
 %job.val={data matlabbatch};
@@ -144,5 +151,5 @@ newsegmentjob.help = {['This is the standard spm8 new segment with a custom ' ..
 job=newsegmentjob;
 end
 %% Local Functions
-%% We're using the ones provided in spm8 for this
+%% We're using the ones provided in spm8/12 for this
 
