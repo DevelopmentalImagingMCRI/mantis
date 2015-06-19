@@ -21,9 +21,9 @@ function [Def,mat] = get_def(job)
 P      = [repmat(job{:},3,1), [',1,1';',1,2';',1,3']];
 V      = spm_vol(P);
 Def    = cell(3,1);
-Def{1} = spm_load_float(V(1));
-Def{2} = spm_load_float(V(2));
-Def{3} = spm_load_float(V(3));
+Def{1} = mantis_load_float(V(1));
+Def{2} = mantis_load_float(V(2));
+Def{3} = mantis_load_float(V(3));
 mat    = V(1).mat;
 %_______________________________________________________________________
 
