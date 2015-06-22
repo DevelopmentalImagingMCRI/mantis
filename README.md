@@ -3,11 +3,15 @@
 
 The morphogical adaptive neonate tissue segmentation toolbox for spm.
 
+[Installation](#installation)
+
+[Using the toolbox](#useage)
+
 If you use this toolbox, please cite:
 
 
 =================
-## Installation
+## <a name="installation"> </a>Installation
 
 MANTiS uses ITK binaries that need to be built for your system, as we
 do not supply binary files. This process requires the following tools:
@@ -79,13 +83,15 @@ rm -rf ITK-build ITK-prefix ITK
 ```
 
 =============
-## Getting started
+## <a name="usage"> </a>Getting started
 
 MANTiS is an SPM toolbox and can be accessed as follows.
 
 1. Select mantis from the toolbox dropdown menu:
-
-![mantis from toolbox menu](https://neuro.erc.monash.edu.au/gitlab/richard.beare/mantis/raw/master/Instructions/mantis_file_selection.png)
-
+![mantis from toolbox menu](https://neuro.erc.monash.edu.au/gitlab/richard.beare/mantis/raw/master/Instructions/mantis_toolbox_menu.png)
 1. Select the complete pipeline option to load the pipeline in the batch editor.
-
+![mantis from local menu](https://neuro.erc.monash.edu.au/gitlab/richard.beare/mantis/raw/master/Instructions/mantis_menu2.png)
+1. Select scalped T2 structural scans from the batch editor file selection:
+![mantis from batch](https://neuro.erc.monash.edu.au/gitlab/richard.beare/mantis/raw/master/Instructions/mantis_file_selection.png)
+1. Click the green run button, and wait. The results for each phase will be stored in two folders, named Phase1 and Phase2.
+1. The components from which the pipeline is constructed are available from the batch editor tools menu.
