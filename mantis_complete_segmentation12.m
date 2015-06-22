@@ -4,12 +4,7 @@
 % cfg_basicio BasicIO - Unknown
 %-----------------------------------------------------------------------
 matlabbatch{1}.cfg_basicio.file_dir.file_ops.cfg_named_file.name = 'Structural scans';
-matlabbatch{1}.cfg_basicio.file_dir.file_ops.cfg_named_file.files = {
-                                                                     {
-                                                                     '/tmp/Data/wu001T2x_N3_brain.nii'
-                                                                     '/tmp/Data/wu004T2x_N3_brain.nii'
-                                                                     }
-                                                                     }';
+matlabbatch{1}.cfg_basicio.file_dir.file_ops.cfg_named_file.files = {{}};
 matlabbatch{2}.spm.tools.mantis.phasefolders.vols(1) = cfg_dep('Named File Selector: Structural scans(1) - Files', substruct('.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files', '{}',{1}));
 matlabbatch{3}.spm.tools.mantis.neonatetemplate = struct([]);
 matlabbatch{4}.spm.tools.mantis.phase1.channel.vols(1) = cfg_dep('Named File Selector: Structural scans(1) - Files', substruct('.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}, '.','val', '{}',{1}), substruct('.','files', '{}',{1}));

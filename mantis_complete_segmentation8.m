@@ -2,7 +2,7 @@
 % Job configuration created by cfg_util (rev $Rev: 4252 $)
 %-----------------------------------------------------------------------
 matlabbatch{1}.cfg_basicio.cfg_named_file.name = 'Structural scans';
-matlabbatch{1}.cfg_basicio.cfg_named_file.files = {{''}};
+matlabbatch{1}.cfg_basicio.cfg_named_file.files = {{}};
 matlabbatch{2}.spm.tools.mantis.phasefolders.vols(1) = cfg_dep;
 matlabbatch{2}.spm.tools.mantis.phasefolders.vols(1).tname = 'Volumes';
 matlabbatch{2}.spm.tools.mantis.phasefolders.vols(1).tgt_spec{1}(1).name = 'class';
