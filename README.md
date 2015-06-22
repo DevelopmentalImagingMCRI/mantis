@@ -3,14 +3,11 @@
 
 The morphogical adaptive neonate tissue segmentation toolbox for spm.
 
-
-[Using the toolbox](#markdown-header-Getting-Started)
-
 If you use this toolbox, please cite:
 
 
 =================
-## <a name="installation"> </a>Installation
+##Installation
 
 MANTiS uses ITK binaries that need to be built for your system, as we
 do not supply binary files. This process requires the following tools:
