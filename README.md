@@ -84,6 +84,6 @@ rm -rf ITK-build ITK-prefix ITK
 MANTiS is an SPM toolbox and can be accessed as follows.
 
 1. Select mantis from the toolbox dropdown menu.
-![mantis from toolbox menu](https://neuro.erc.monash.edu.au/gitlab/richard.beare/mantis/tree/master/Instructions/mantis_toolbox_menu.png)
+![mantis from toolbox menu](Instructions/mantis_toolbox_menu.png)
 1. Select the complete pipeline option to load the pipeline in the batch editor.
 
