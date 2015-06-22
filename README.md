@@ -4,7 +4,7 @@
 The morphogical adaptive neonate tissue segmentation toolbox for spm.
 
 
-[Using the toolbox](#usage)
+[Using the toolbox](#markdown-header-Getting-Started)
 
 If you use this toolbox, please cite:
 
@@ -82,7 +82,7 @@ rm -rf ITK-build ITK-prefix ITK
 ```
 
 =============
-## <a name="usage"> Getting started </a>
+##Getting started
 
 MANTiS is an SPM toolbox and can be accessed as follows.
 
