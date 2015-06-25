@@ -123,12 +123,13 @@ void doFilt(const CmdLineType &CmdLineObj)
 
   Masker->SetInput(T2);
   Masker->SetInput2(csfmask);
+  Masker->SetOutsideValue(itk::NumericTraits< typename ImageType::PixelType >::NonpositiveMin());
   writeImDbg<MaskImType>(csfmask, "marker");
 
   ReconFilt->SetMarkerImage(Masker->GetOutput());
   ReconFilt->SetMaskImage(T2);
   ReconFilt->SetFullyConnected(false);
-
+  
   writeIm<ImageType>(ReconFilt->GetOutput(), CmdLineObj.OutputIm);
   //writeImDbg<ImageType>(Masker->GetOutput(), "marker");
 }
