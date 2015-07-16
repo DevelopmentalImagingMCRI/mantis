@@ -31,7 +31,7 @@ for k=1:numel(job.vols)
 
     tissueV = spm_vol(tmap);
     tissueY = spm_read_vols(tissueV);
-    
+    clear tmap;
     % find the position of the maximum in the tissue
     % dimension
     [mxProb,mxProbIdx]=max(tissueY, [], 4);
@@ -55,6 +55,7 @@ for k=1:numel(job.vols)
     % load the phase 1 hard segmentations
     hardV = spm_vol(hmap);
     hardY = spm_read_vols(hardV);
+    clear hmap;
     % phase 2 - replace phase2 gm voxels that were wm in phase 1
     % with wm - these correspond to isolated bits of wm
     % find voxels that were wm in phase 1, but not phase 2.

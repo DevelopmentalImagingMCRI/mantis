@@ -20,7 +20,7 @@ for k=1:numel(job.vols)
     
     tissueV = spm_vol(tmap);
     tissueY = spm_read_vols(tissueV);
-    
+    clear tmap;
     % find the position of the maximum in the tissue
     % dimension
     [mxProb,mxProbIdx]=max(tissueY, [], 4);
