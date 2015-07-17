@@ -15,6 +15,13 @@
 #include <itkMorphologicalWatershedFromMarkersImageFilter.h>
 #include <itkBinaryShapeOpeningImageFilter.h>
 #include <itkGradientMagnitudeImageFilter.h>
+#include <itkOtsuThresholdImageFilter.h>
+#include "itkLabelImageToShapeLabelMapFilter.h"
+#include "itkLabelMapToBinaryImageFilter.h"
+#include "itkBinaryDilateParaImageFilter.h"
+#include "itkBinaryErodeParaImageFilter.h"
+#include "itkBinaryFillholeImageFilter.h"
+#include "itkDirectionalGradientImageFilter.h"
 
 #include <itkSmartPointer.h>
 namespace itk
@@ -35,8 +42,8 @@ public:
   std::string InputIm, OutputIm; //
 } CmdLineType;
 
-bool debug=false;
-std::string debugprefix="/tmp/jc/prem";
+bool debug=true;
+std::string debugprefix="/tmp/rb/prem";
 std::string debugsuffix=".nii.gz";
 
 template <class TImage>
@@ -61,7 +68,7 @@ void ParseCmdLine(int argc, char* argv[],
     ValueArg<std::string> inArg("i","input","T2 input image",true,"result","string");
     cmd.add( inArg );
 
-    ValueArg<std::string> outArg("","outputprefix","output image",true,"result","string");
+    ValueArg<std::string> outArg("o","output","output image",true,"result","string");
     cmd.add( outArg );
 
     SwitchArg debugArg("d", "debug", "save debug images", debug);
@@ -71,9 +78,7 @@ void ParseCmdLine(int argc, char* argv[],
     cmd.parse( argc, argv );
 
     CmdLineObj.InputIm = inArg.getValue();
-    CmdLineObj.OutputImPrefix = outArg.getValue();
-    debugprefix = prefixArg.getValue();
-    debug=debugArg.getValue();
+    CmdLineObj.OutputIm = outArg.getValue();
     }
   catch (ArgException &e)  // catch any exceptions
     {
@@ -117,11 +122,129 @@ typename RawImType::Pointer scaleSpaceSmooth(typename RawImType::Pointer input, 
     }
   return(res);
 }
+/////////////////////////////////////////////////////////////////
+template <class RawImType, class MaskImType>
+typename MaskImType::Pointer doRefine(typename RawImType::Pointer raw, 
+					typename MaskImType::Pointer mask,
+					float gap)
+{
+  typedef typename itk::Image<float, RawImType::ImageDimension> FloatImType;
+  typedef typename FloatImType::Pointer FIPtr;
+  // 
+  itk::Instance<itk::BinaryErodeParaImageFilter<MaskImType> > Eroder;
+  Eroder->SetInput(mask);
+  Eroder->SetRadius(gap);
+  Eroder->SetUseImageSpacing(true);
+
+  // gradient from inner marker
+  itk::Instance<itk::DirectionalGradientImageFilter<RawImType, MaskImType, 
+						    FloatImType> > DirGrad;
+
+  DirGrad->SetInput(raw);
+  DirGrad->SetMaskImage(Eroder->GetOutput());
+  DirGrad->SetOutsideValue(1);
+  DirGrad->SetScale(-1);
+
+  std::vector<float> scales;
+  scales.push_back(0.25);
+  scales.push_back(0.5);
+  FIPtr grad = scaleSpaceSmooth<FloatImType>(DirGrad->GetOutput(), scales);
+
+
+  writeImDbg<FloatImType>(grad, "dgrad");
+  itk::Instance<itk::BinaryDilateParaImageFilter<MaskImType> > Dilater;
+  Dilater->SetInput(mask);
+  Dilater->SetRadius(gap);
+  Dilater->SetUseImageSpacing(true);
+  itk::Instance<itk::BinaryThresholdImageFilter<MaskImType, MaskImType> > Inverter;
+  Inverter->SetInput(Dilater->GetOutput());
+  Inverter->SetUpperThreshold(1);
+  Inverter->SetLowerThreshold(1);
+  Inverter->SetInsideValue(0);
+  Inverter->SetOutsideValue(2);
+
+  itk::Instance< itk::MaximumImageFilter <MaskImType, MaskImType, MaskImType> > Combine;
+  Combine->SetInput(Eroder->GetOutput());
+  Combine->SetInput2(Inverter->GetOutput());
+  
+  itk::Instance< itk::MorphologicalWatershedFromMarkersImageFilter<FloatImType, MaskImType> > WSFilt;
+  WSFilt->SetInput(grad);
+  WSFilt->SetMarkerImage(Combine->GetOutput());
+
+  itk::Instance<itk::BinaryThresholdImageFilter<MaskImType, MaskImType> > SelectBrain;
+  SelectBrain->SetInput(WSFilt->GetOutput());
+  SelectBrain->SetUpperThreshold(1);
+  SelectBrain->SetLowerThreshold(1);
+  SelectBrain->SetInsideValue(1);
+  SelectBrain->SetOutsideValue(0);
+
+  typename MaskImType::Pointer result = SelectBrain->GetOutput();
+  result->Update();
+  result->DisconnectPipeline();
+  return(result);
+
+}
 
 /////////////////////////////////////////////////////////////////
+template <class RawImType, class MaskImType>
+typename MaskImType::Pointer findMarker(typename RawImType::Pointer raw, 
+					float erode, float dilate)
+{
+  
+  itk::Instance<itk::OtsuThresholdImageFilter <RawImType, MaskImType> > Thresh;
+  itk::Instance<itk::BinaryShapeKeepNObjectsImageFilter<MaskImType> > discarder;
+  itk::Instance<itk::BinaryFillholeImageFilter<MaskImType> > FillHoles;
+  Thresh->SetInput(raw);
+  Thresh->SetInsideValue(0);
+  Thresh->SetOutsideValue(1);
+
+  FillHoles->SetInput(Thresh->GetOutput());
+  FillHoles->SetForegroundValue(1);
+
+
+  discarder->SetNumberOfObjects(1);
+  discarder->SetInput(FillHoles->GetOutput());
+  discarder->SetForegroundValue(1);
+
+  typename MaskImType::Pointer mask = discarder->GetOutput();
+  mask->Update();
+  mask->DisconnectPipeline();
+
+  // Large erosion and keep biggest.
+  itk::Instance<itk::BinaryErodeParaImageFilter<MaskImType> > Eroder;
+  Eroder->SetInput(mask);
+  Eroder->SetRadius(erode);
+  Eroder->SetUseImageSpacing(true);
+  itk::Instance<itk::BinaryShapeKeepNObjectsImageFilter<MaskImType> > discarder2;
+
+  discarder->SetNumberOfObjects(1);
+  discarder->SetInput(Eroder->GetOutput());
+  discarder->SetForegroundValue(1);
+
+  // dilate and invert.
+  itk::Instance<itk::BinaryDilateParaImageFilter<MaskImType> > Dilater;
+  Dilater->SetInput(discarder->GetOutput());
+  Dilater->SetRadius(erode+dilate);
+  Dilater->SetUseImageSpacing(true);
+
+  itk::Instance<itk::BinaryThresholdImageFilter<MaskImType, MaskImType> > Inverter;
+  Inverter->SetInput(Dilater->GetOutput());
+  Inverter->SetUpperThreshold(1);
+  Inverter->SetLowerThreshold(1);
+  Inverter->SetInsideValue(0);
+  Inverter->SetOutsideValue(2);
+  itk::Instance< itk::MaximumImageFilter <MaskImType, MaskImType, MaskImType> > Combine;
+  Combine->SetInput(discarder->GetOutput());
+  Combine->SetInput2(Inverter->GetOutput());
+  
+  typename MaskImType::Pointer result = Combine->GetOutput();
+  result->Update();
+  return(result);
+}
+/////////////////////////////////////////////////////////////////
 template <class RawImType>
-void findTop(typename RawImType::Pointer raw, float distance, float slice, 
-	     int &outtop, int &outbottom, int &x, int &y)
+void findTop(typename RawImType::Pointer raw, float slice, 
+	     int &outtop, int &x, int &y)
 {
   typedef typename itk::Image<unsigned char, RawImType::ImageDimension> MaskImType;
 
@@ -163,6 +286,7 @@ void findTop(typename RawImType::Pointer raw, float distance, float slice,
 
   typename RawImType::SpacingType sp = raw->GetSpacing();
   int top = bb.GetIndex()[2] + bb.GetSize()[2] - 1;
+  outtop=top;
   {
   // estimate the centroid using the top 15mm
   typedef typename itk::LabelImageToShapeLabelMapFilter<MaskImType> LabellerTypeB;
@@ -205,6 +329,34 @@ void doSeg(const CmdLineType &CmdLineObj)
   typedef typename MaskImType::Pointer MIPtr;
 
   IPtr T2 = readIm<ImageType>(CmdLineObj.InputIm);
+
+  MIPtr marker = findMarker<ImageType, MaskImType>(T2, 5, 10);
+  writeImDbg<MaskImType>(marker, "marker");
+  
+  // see if we can get away with a simple gradient.
+  itk::Instance <itk::GradientMagnitudeRecursiveGaussianImageFilter<ImageType, FloatImType> > GradFilt;
+  GradFilt->SetInput(T2);
+  GradFilt->SetSigma(3);
+
+  itk::Instance< itk::MorphologicalWatershedFromMarkersImageFilter<FloatImType, MaskImType> > WSFilt;
+  WSFilt->SetInput(GradFilt->GetOutput());
+  WSFilt->SetMarkerImage(marker);
+
+  writeImDbg<FloatImType>(GradFilt->GetOutput(), "grad");
+  itk::Instance<itk::BinaryThresholdImageFilter<MaskImType, MaskImType> > SelectBrain;
+  SelectBrain->SetInput(WSFilt->GetOutput());
+  SelectBrain->SetUpperThreshold(1);
+  SelectBrain->SetLowerThreshold(1);
+  SelectBrain->SetInsideValue(1);
+  SelectBrain->SetOutsideValue(0);
+  writeImDbg<MaskImType>(SelectBrain->GetOutput(), "phase1");
+  // Now for a phase 2?? Use a thinner gradient, with local
+  // orientation so that we pick up a decrease in intensity only
+
+  MIPtr NewMask = doRefine<ImageType, MaskImType>(T2, SelectBrain->GetOutput(), 3);
+  writeIm<MaskImType>(NewMask, CmdLineObj.OutputIm);
+
+
 }
 
 int main(int argc, char * argv[])

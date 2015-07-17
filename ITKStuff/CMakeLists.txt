@@ -24,7 +24,7 @@ INCLUDE_DIRECTORIES(
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}/tclap-code/include/
   ${CMAKE_CURRENT_SOURCE_DIR}/Modules/parabolicMorphology/include/
-
+  ${CMAKE_CURRENT_SOURCE_DIR}/Modules/DirectionalGradient/
 )
 #this foreach loads all of the packages that you specified as required.
 #It shouldn't need to be modified.
