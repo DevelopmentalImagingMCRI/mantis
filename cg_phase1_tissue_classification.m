@@ -141,6 +141,9 @@ if spm8,
 else
     % spm12 has some extra fields
     newsegmentjob.val{3}.val{7}.val={[1 1]}; %Deformation fields
+    % and we need to turn off the cleanup part
+    newsegmentjob.val{3}.val{1}.val={[0]};
+    newsegmentjob.val{3}.val{2}.val={[0]};
 end
 newsegmentjob.tag = 'phase1';
 newsegmentjob.name = 'Mantis: Phase 1 tissue classification';
