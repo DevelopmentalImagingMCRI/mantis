@@ -14,7 +14,7 @@ scalperprefix.name = 'Filename prefix for scalper output';
 scalperprefix.help = {'String prepended to the filename of scalped images. Default is ''sc''.'};
 scalperprefix.strtype='s';
 scalperprefix.num = [1 Inf];
-scalperprefix.def = @scalperdefaultpref;
+scalperprefix.def = @(val)scalperdefaultpref(val{:});
 
 job         = cfg_exbranch;
 job.tag     = 'wsscalper';
