@@ -123,6 +123,19 @@ typename RawImType::Pointer scaleSpaceSmooth(typename RawImType::Pointer input, 
   return(res);
 }
 /////////////////////////////////////////////////////////////////
+template <class MaskImType>
+typename MaskImType::Pointer binDilate(typename MaskImType::Pointer mask, float radius)
+{
+  itk::Instance<itk::BinaryDilateParaImageFilter<MaskImType> > Dilater;
+  Dilater->SetInput(mask);
+  Dilater->SetRadius(radius);
+  Dilater->SetUseImageSpacing(true);
+  typename MaskImType::Pointer result = Dilater->GetOutput();
+  result->Update();
+  result->DisconnectPipeline();
+  return(result);
+}
+/////////////////////////////////////////////////////////////////
 template <class RawImType, class MaskImType>
 typename MaskImType::Pointer doRefine(typename RawImType::Pointer raw, 
 					typename MaskImType::Pointer mask,
@@ -328,7 +341,11 @@ void doSeg(const CmdLineType &CmdLineObj)
   typedef typename itk::Image<unsigned char, ImageType::ImageDimension> MaskImType;
   typedef typename MaskImType::Pointer MIPtr;
 
-  IPtr T2 = readIm<ImageType>(CmdLineObj.InputIm);
+  IPtr T2orig = readIm<ImageType>(CmdLineObj.InputIm);
+
+  // do everything on eroded images, then dilate the result
+  float erad = 3.0;
+  IPtr T2 = doErodeMM<ImageType>(T2orig, erad);
 
   MIPtr marker = findMarker<ImageType, MaskImType>(T2, 5, 10);
   writeImDbg<MaskImType>(marker, "marker");
@@ -349,12 +366,15 @@ void doSeg(const CmdLineType &CmdLineObj)
   SelectBrain->SetLowerThreshold(1);
   SelectBrain->SetInsideValue(1);
   SelectBrain->SetOutsideValue(0);
-  writeImDbg<MaskImType>(SelectBrain->GetOutput(), "phase1");
+
+  
+
+  writeImDbg<MaskImType>(doDilate<MaskImType>(SelectBrain->GetOutput(), erad), "phase1");
   // Now for a phase 2?? Use a thinner gradient, with local
   // orientation so that we pick up a decrease in intensity only
 
   MIPtr NewMask = doRefine<ImageType, MaskImType>(T2, SelectBrain->GetOutput(), 3);
-  writeIm<MaskImType>(NewMask, CmdLineObj.OutputIm);
+  writeIm<MaskImType>(doDilate<MaskImType>(NewMask, erad), CmdLineObj.OutputIm);
 
 
 }
