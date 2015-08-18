@@ -15,24 +15,24 @@ xoffset.tag = 'xoffset';
 xoffset.name = 'offset for x axis (mm)';
 xoffset.help = {'offset for the x axis relative to the COM. Default: 0'};
 xoffset.strtype='r';
-xoffset.num = [1 Inf];
-xoffset.def = [0];
+xoffset.num = [1];
+xoffset.def = @(val)defxoffset(val{:});
 
 yoffset = cfg_entry;
 yoffset.tag = 'yoffset';
 yoffset.name = 'offset for y axis (mm)';
 yoffset.help = {'offset for the y axis relative to the COM. Default: 20'};
 yoffset.strtype='r';
-yoffset.num = [1 Inf];
-yoffset.def = [20];
+yoffset.num = [1];
+yoffset.def = @(val)defyoffset(val{:});
 
 zoffset = cfg_entry;
 zoffset.tag = 'zoffset';
 zoffset.name = 'offset for z axis (mm)';
 zoffset.help = {'offset for the z axis relative to the COM. Default: -20'};
 zoffset.strtype='r';
-zoffset.num = [1 Inf];
-zoffset.def = [-20];
+zoffset.num = [1];
+zoffset.def = @(val)defzoffset(val{:});
 
 job         = cfg_exbranch;
 job.tag     = 'setorigin';
@@ -56,5 +56,17 @@ cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
 
 dep=cdep;
 
+end
+
+function p = defxoffset(varargin)
+p=0;
+end
+
+function p = defyoffset(varargin)
+p=20;
+end
+
+function p = defzoffset(varargin)
+p=-20;
 end
 

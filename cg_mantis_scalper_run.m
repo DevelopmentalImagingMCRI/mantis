@@ -9,7 +9,7 @@ exe = fullfile(exedir, 'neonateScalper');
 
 % We need to be able to process multiple structural scans
 for k=1:numel(job.vols)
-    prefix = job.scaperprefix{k};
+    prefix = job.scaperprefix{1};
  
     structfile=char(job.vols{k});
     [srcdir, corename, ext]=fileparts(structfile);
