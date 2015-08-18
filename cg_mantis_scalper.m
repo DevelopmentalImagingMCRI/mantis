@@ -44,6 +44,6 @@ dep=cdep;
 
 end
 
-function p = scalperdefaultpref
+function p = scalperdefaultpref(varargin)
 p='sc'
 end
