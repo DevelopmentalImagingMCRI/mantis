@@ -28,7 +28,7 @@ hardseg1=cg_mantis_hardseg;
 hardseg2=cg_mantis_hardseg2;
 
 scalper = cg_mantis_scalper;
-com = cg_mantis_setorigin;
+%com = cg_mantis_setorigin;
 % ---------------------------------------------------------------------
 % mantis Adaptive-Neonatal-Brain-Segmentation
 % ---------------------------------------------------------------------
