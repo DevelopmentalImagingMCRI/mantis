@@ -21,7 +21,7 @@ xoffset.def = @(val)defxoffset(val{:});
 yoffset = cfg_entry;
 yoffset.tag = 'yoffset';
 yoffset.name = 'offset for y axis (mm)';
-yoffset.help = {'offset for the y axis relative to the COM. Default: 20'};
+yoffset.help = {'offset for the y axis relative to the COM. Default: -20'};
 yoffset.strtype='r';
 yoffset.num = [1 1];
 yoffset.def = @(val)defyoffset(val{:});
@@ -29,7 +29,7 @@ yoffset.def = @(val)defyoffset(val{:});
 zoffset = cfg_entry;
 zoffset.tag = 'zoffset';
 zoffset.name = 'offset for z axis (mm)';
-zoffset.help = {'offset for the z axis relative to the COM. Default: -20'};
+zoffset.help = {'offset for the z axis relative to the COM. Default: 20'};
 zoffset.strtype='r';
 zoffset.num = [1 1];
 zoffset.def = @(val)defzoffset(val{:});
@@ -63,10 +63,10 @@ p=0;
 end
 
 function p = defyoffset(varargin)
-p=20;
+p=-20;
 end
 
 function p = defzoffset(varargin)
-p=-20;
+p=20;
 end
 
