@@ -3,9 +3,9 @@ function job = cg_mantis_setorigin
 vols         = cfg_files;
 vols.tag     = 'vols';
 vols.name    = 'Volumes';
-vols.help    = {['This module sets the origin of an image to the centre of mass'
+vols.help    = {'This module sets the origin of an image to the centre of mass' 
     'It is designed to work with scalped neonate images. Make sure'
-    'to keep a copy of the originals if you will need to reset the origin']};
+    'to keep a copy of the originals if you will need to reset the origin'};
 vols.filter = 'image';
 vols.ufilter = '.*';
 vols.num     = [1 Inf];
