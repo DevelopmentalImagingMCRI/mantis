@@ -18,7 +18,7 @@ for k=1:numel(job.vols)
     T2=fullfile( srcdir, [corename ext]);
     
     OUTPREF=fullfile(srcdir, [prefix corename ext]);
-    command=[exe ' --input ' T2  '--output ' OUTPREF];
+    command=[exe ' --input ' T2  ' --output ' OUTPREF];
     system(command);
     outnames{k}=OUTPREF;
     mantisCopyHeader(T2, outnames{k});
