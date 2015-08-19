@@ -10,9 +10,9 @@ function res = cg_mantis_setorigin_run( job )
 
 % We need to be able to process multiple structural scans
 for k=1:numel(job.vols)
-    xoff = job.xoffset{1};
-    yoff = job.yoffset{1};
-    zoff = job.zoffset{1};
+    xoff = job.xoffset;
+    yoff = job.yoffset;
+    zoff = job.zoffset;
     
     structfile=char(job.vols{k});
     [srcdir, corename, ext]=fileparts(structfile);
