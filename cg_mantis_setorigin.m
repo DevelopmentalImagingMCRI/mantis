@@ -29,7 +29,7 @@ yoffset.def = @(val)defyoffset(val{:});
 zoffset = cfg_entry;
 zoffset.tag = 'zoffset';
 zoffset.name = 'offset for z axis (mm)';
-zoffset.help = {'offset for the z axis relative to the COM. Default: 20'};
+zoffset.help = {'offset for the z axis relative to the COM. Default: 15'};
 zoffset.strtype='r';
 zoffset.num = [1 1];
 zoffset.def = @(val)defzoffset(val{:});
@@ -67,6 +67,6 @@ p=-20;
 end
 
 function p = defzoffset(varargin)
-p=20;
+p=15xs;
 end
 
