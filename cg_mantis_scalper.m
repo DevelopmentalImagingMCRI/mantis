@@ -31,7 +31,7 @@ end
 function dep = vout(job)
 % The output of this job is always the same
 cdep = cfg_dep;
-cdep(end).sname      = 'Neonate T2 scalping';
+cdep(end).sname      = 'Scalped structurals';
 cdep(end).src_output = substruct('.','scalped','()',{':'});
 cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
 
