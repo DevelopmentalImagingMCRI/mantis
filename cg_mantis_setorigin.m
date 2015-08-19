@@ -49,7 +49,7 @@ end
 function dep = vout(job)
 % The output of this job is always the same
 
-cdep(end+1) = cfg_dep;
+cdep = cfg_dep;
 cdep(end).sname      = 'Set origin';
 cdep(end).src_output = substruct('.','setorigin','()',{':'});
 cdep(end).tgt_spec   = cfg_findspec({{'filter','image','strtype','e'}});
