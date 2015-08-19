@@ -139,6 +139,18 @@ int main(int argc, char * argv[])
   ParseCmdLine(argc, argv, CmdLineObj);
 
   const int dimension = 3;
+  int dim1 = 0;
+  itk::ImageIOBase::IOComponentType ComponentType;
+  if (!readImageInfo(CmdLineObj.InputIm, &ComponentType, &dim1)) 
+    {
+    std::cerr << "Failed to open " << CmdLineObj.InputIm << std::endl;
+    return(EXIT_FAILURE);
+    }
+  if (dim1 != dimension) 
+    {
+      std::cerr << CmdLineObj.InputIm << "isn't 3D" << std::endl;
+      return(EXIT_FAILURE);
+    }
   // These tolerances are being set high because we rely on spm to pass in
   // appropriate data. Problems arise because spm uses the sform when
   // the sform and qform are different while ITK seems to use the
@@ -149,7 +161,21 @@ int main(int argc, char * argv[])
 
   itk::ImageToImageFilterCommon::SetGlobalDefaultCoordinateTolerance(1000.0);
   itk::ImageToImageFilterCommon::SetGlobalDefaultDirectionTolerance(1000.0);
-  doFilt<float, dimension>(CmdLineObj);
+  switch (ComponentType) 
+    {
+    case (itk::ImageIOBase::SHORT):
+      doFile<short, dimension>(CmdLineObj);
+      break;
+    case (itk::ImageIOBase::USHORT):
+      doFile<unsigned short, dimension>(CmdLineObj);
+      break;
+    case (itk::ImageIOBase::INT):
+      doFilt<int, dimension>(CmdLineObj);
+      break;
+    default:
+      doFilt<float, dimension>(CmdLineObj);
+      break;
+    }
 
   return(EXIT_SUCCESS);
 }
