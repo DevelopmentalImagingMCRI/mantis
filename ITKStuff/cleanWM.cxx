@@ -164,10 +164,10 @@ int main(int argc, char * argv[])
   switch (ComponentType) 
     {
     case (itk::ImageIOBase::SHORT):
-      doFile<short, dimension>(CmdLineObj);
+      doFilt<short, dimension>(CmdLineObj);
       break;
     case (itk::ImageIOBase::USHORT):
-      doFile<unsigned short, dimension>(CmdLineObj);
+      doFilt<unsigned short, dimension>(CmdLineObj);
       break;
     case (itk::ImageIOBase::INT):
       doFilt<int, dimension>(CmdLineObj);
