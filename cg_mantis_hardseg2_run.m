@@ -12,7 +12,7 @@ for k=1:numel(job.vols)
     % Need to fix this when we modify the template
     structural = char(job.structural{k});
     [srcdir, corename, ext]=fileparts(tissue);
-    ext=regexprep(ext, ',.$', '');
+    ext=regexprep(ext, ',\d$', '');
     subcorename=regexprep(corename, '^c.', '');
     for J=1:tpmcomponents,
         thistissue=['c' sprintf('%d', J) subcorename ext];
@@ -22,7 +22,7 @@ for k=1:numel(job.vols)
     % construct names of the hard segmentations
     hseg = char(job.hardseg1{k});
     [hsrcdir, hcorename, hext]=fileparts(hseg);
-    hext=regexprep(hext, ',.$', '');
+    hext=regexprep(hext, ',\d$', '');
     hsubcorename=regexprep(hcorename, '^h.', '');
     for J=1:3,
         thishard=['h' sprintf('%d', J) hsubcorename hext];

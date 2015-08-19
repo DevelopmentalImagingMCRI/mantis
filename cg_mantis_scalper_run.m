@@ -13,7 +13,8 @@ for k=1:numel(job.vols)
  
     structfile=char(job.vols{k});
     [srcdir, corename, ext]=fileparts(structfile);
-    %ext=ext(1:end-2);
+    % get rid of the ,1 at the end of the filename
+    ext=regexrep(ext, ',\d$','');
     T2=fullfile( srcdir, [corename ext]);
     
     OUTPREF=fullfile(srcdir, [prefix corename ext]);
