@@ -16,12 +16,12 @@
 #include <itkBinaryShapeOpeningImageFilter.h>
 #include <itkGradientMagnitudeImageFilter.h>
 #include <itkOtsuThresholdImageFilter.h>
+#include <itkMaskImageFilter.h>
 #include "itkLabelImageToShapeLabelMapFilter.h"
 #include "itkLabelMapToBinaryImageFilter.h"
 #include "itkBinaryDilateParaImageFilter.h"
 #include "itkBinaryErodeParaImageFilter.h"
 #include "itkBinaryFillholeImageFilter.h"
-#include "itkDirectionalGradientImageFilter.h"
 
 #include <itkSmartPointer.h>
 namespace itk
@@ -214,8 +214,15 @@ void doSeg(const CmdLineType &CmdLineObj)
   // Now for a phase 2?? Use a thinner gradient, with local
   // orientation so that we pick up a decrease in intensity only
 
-  //MIPtr NewMask = doRefine<ImageType, MaskImType>(T2, SelectBrain->GetOutput(), 3);
-  writeIm<MaskImType>(doDilateMM<MaskImType>(SelectBrain->GetOutput(), erad), CmdLineObj.OutputIm);
+  MIPtr NewMask = doDilateMM<MaskImType>(SelectBrain->GetOutput(), erad);
+  if (CmdLineObj.OutputMaskIm != "")
+    {
+      writeIm<MaskImType>(NewMask, CmdLineObj.OutputMaskIm);
+    }
+  itk::Instance<itk::MaskImageFilter<ImageType, MaskImType> > Masker;
+  Masker->SetInput(T2orig);
+  Masker->SetInput2(NewMask);
+  writeIm<ImageType>(Masker->GetOutput(), CmdLineObj.OutputIm);
 
 
 }
