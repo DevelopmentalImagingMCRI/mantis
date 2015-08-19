@@ -13,7 +13,7 @@ scalperprefix.tag = 'scalperprefix';
 scalperprefix.name = 'Filename prefix for scalper output';
 scalperprefix.help = {'String prepended to the filename of scalped images. Default is ''sc''.'};
 scalperprefix.strtype='s';
-scalperprefix.num = [1 1];
+scalperprefix.num = [1 Inf];
 scalperprefix.def = @(val)scalperdefaultpref(val{:});
 
 job         = cfg_exbranch;
