@@ -23,6 +23,7 @@ for k=1:numel(job.vols)
     outnames{k}=OUTPREF;
     mantisCopyHeader(T2, outnames{k});
     T2names{k}=T2;
+    disp(['Completed scalping ' corename]);
 end
 
 
