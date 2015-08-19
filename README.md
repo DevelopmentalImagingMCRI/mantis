@@ -65,7 +65,7 @@ cmake ../SuperBuild
 make -j2
 ```
 
-executables named _segCSF_ and _cleanWM_ will be in
+executables named _segCSF_ , _cleanWM_ and _neonateScalper_ will be in
 ```bash
 mantis/ITKStuff/Build.${ARCH}/MANTiS-build/bin/
 ```
