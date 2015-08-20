@@ -67,6 +67,6 @@ p=-20;
 end
 
 function p = defzoffset(varargin)
-p=15xs;
+p=15;
 end
 
