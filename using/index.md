@@ -4,7 +4,7 @@ title: Installation
 ---
 
 <section role="banner">
-  <img src="/img/banner.jpg" />
+  <img src="{{ site.baseurl }}{{ post.url }}/img/banner.jpg" />
 </section>
 
 ## Preliminaries
