@@ -36,7 +36,6 @@ MANTiS is an SPM toolbox and can be accessed as follows.
 
 
 ## Brain extraction
-
 The MANTiS brain extraction tool is available via the batch interface:
 
 ## Setting image origins.
