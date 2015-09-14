@@ -1,0 +1,17 @@
+---
+layout: default
+title: Installation
+---
+
+<section role="banner">
+  <img src="{{ site.baseurl }}{{ post.url }}/img/banner.jpg" />
+</section>
+
+# Brain extraction
+
+There is a preliminary tool for brain extraction based on T2 weighted
+scans. It is quite simple, but we've found it useful. It wasn't used in
+the validation study as it wasn't available then.
+
+It can be accessed via the batch interface:
+

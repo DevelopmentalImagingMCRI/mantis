@@ -15,7 +15,7 @@ should be registered - simply that the data ordering is the same. We use the _fs
 to control data ordering.
 
 Brain extraction for the MANTiS validation studies were carried out using FSL _BET_. There
-is also a [preliminary tool](##Brain-extraction) in MANTiS to perform brain extraction.
+is also a [preliminary tool](extraction.md) in MANTiS to perform brain extraction.
 
 Finally, as with typical SPM segmentation, the origins of the image need to be roughly equivalent
 to the template. There is a tool in MANTiS to set the origin based on the centre of mass. This
@@ -34,9 +34,8 @@ MANTiS is an SPM toolbox and can be accessed as follows.
 1. Click the green run button, and wait. The results for each phase will be stored in two folders, named Phase1 and Phase2.
 1. The components from which the pipeline is constructed are available from the batch editor tools menu.
 
-
-## Brain extraction
-The MANTiS brain extraction tool is available via the batch interface:
+## Brain Extractions
+[A preliminary tool:](extraction.md)
 
 ## Setting image origins.
 
