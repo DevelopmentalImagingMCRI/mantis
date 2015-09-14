@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Installation
+title: Using mantis
 ---
 
 <section role="banner">

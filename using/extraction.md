@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Installation
+title: Brain extraction
 ---
 
 <section role="banner">
