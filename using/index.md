@@ -15,7 +15,7 @@ should be registered - simply that the data ordering is the same. We use the _fs
 to control data ordering.
 
 Brain extraction for the MANTiS validation studies were carried out using FSL _BET_. There
-is also a [preliminary tool](#brain-extraction) in MANTiS to perform brain extraction.
+is also a [preliminary tool](#Brain-extraction) in MANTiS to perform brain extraction.
 
 Finally, as with typical SPM segmentation, the origins of the image need to be roughly equivalent
 to the template. There is a tool in MANTiS to set the origin based on the centre of mass. This
