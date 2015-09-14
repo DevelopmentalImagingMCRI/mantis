@@ -1,3 +1,4 @@
 name: MANTiS instructions
 markdown: redcarpet
 highlighter: pygments
+baseurl: /
