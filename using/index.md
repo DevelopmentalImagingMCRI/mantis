@@ -18,7 +18,7 @@ Brain extraction for the MANTiS validation studies were carried out using FSL _B
 is also a [preliminary tool](extraction) in MANTiS to perform brain extraction.
 
 Finally, as with typical SPM segmentation, the origins of the image need to be roughly equivalent
-to the template. There is a tool in MANTiS to set the origin based on the centre of mass. This
+to the template. There is a [tool in MANTiS](origin) to set the origin based on the centre of mass. This
 tool should also be applied to brain extracted images.
 
 ##Getting started
@@ -35,8 +35,8 @@ MANTiS is an SPM toolbox and can be accessed as follows.
 1. The components from which the pipeline is constructed are available from the batch editor tools menu.
 
 ## Brain Extractions
-[A preliminary tool:](extraction.md)
+[A preliminary tool:](extraction)
 
 ## Setting image origins.
-
+[Tool for setting image origin:](origin)
 
