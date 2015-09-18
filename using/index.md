@@ -3,9 +3,7 @@ layout: default
 title: Using mantis
 ---
 
-<section role="banner">
-  <img src="{{ site.baseurl }}{{ post.url }}/img/banner.jpg" />
-</section>
+<br>
 
 ## Preliminaries
 

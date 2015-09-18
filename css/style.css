@@ -29,9 +29,24 @@ header {
   overflow: hidden;
 }
 h1 {
-  margin: 0;
+  font-family: "Roboto Slab";
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.2;
+  src: local("Roboto Slab Light"), local("RobotoSlab-Light"), url("https://fonts.gstatic.com/s/robotoslab/v6/dazS1PrQQuCxC3iOAJFEJUo2lTMeWA_kmIyWrkNCwPc.woff2") format("woff2");
+  margin: 10;
 }
- 
+
+h2 {
+  font-family: "Roboto Slab";
+  font-style: normal;
+  font-weight: 200;
+  line-height: 1.2;
+  src: local("Roboto Slab Light"), local("RobotoSlab-Light"), url("https://fonts.gstatic.com/s/robotoslab/v6/dazS1PrQQuCxC3iOAJFEJUo2lTMeWA_kmIyWrkNCwPc.woff2") format("woff2");
+  margin: 10;
+  text-align: left;
+}
+
 nav ul, ul.entries {
   list-style-type: none;
 }
