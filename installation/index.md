@@ -2,19 +2,14 @@
 layout: default
 title: Installation
 ---
-
-<section role="banner">
-  <img src="{{ site.baseurl }}{{ post.url }}/img/banner.jpg" />
-</section>
-
+<br>
+<section class="content">
 # Installing MANTiS
-
 MANTiS is provided as a combination of matlab and c++ code. It needs to be built for your
 platform. So far we have only tested on Linux systems. In principle it should also work
 on OSX if SPM works.
 
 ## Prerequisites
-
 The build process requires the following tools:
 
 1. git
@@ -22,13 +17,11 @@ The build process requires the following tools:
 1. c++ compiler
 
 ## Decisions to make
-
 MANTiS eventually needs to reside in the _spm/toolbox_ folder. You can carry out the commands
 below in that folder or perform them elsewhere and copy the results to _spm/toolbox_. The 
 advantage of doing everything in the _spm/toolbox_ is that it is easier to update the installation.
 
 ## Downloading
-
 The source code must be fetched using _git_, and there are several steps. Type the following into
 a terminal. These commands fetch the MANTiS code, plus some dependencies.
 

@@ -1,50 +1,58 @@
-body {
-  font: 16px/1.5 verdana, helvetica-neue, helvetica, arial, san-serif;
-  background: black;
-  color: #ececec;
-  padding: 0;
-  margin: 0;
+h1, h2, h3, h4, body, .main {
+  font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif;
+  src: local("Roboto Slab Light"), local("RobotoSlab-Light"), url("https://fonts.gstatic.com/s/robotoslab/v6/dazS1PrQQuCxC3iOAJFEJUo2lTMeWA_kmIyWrkNCwPc.woff2") format("woff2");
+  color: #646B74;
 }
+
+
+.content, body {
+  background: white;
+  font-size: 14px;
+  line-height: 1.7;							    
+  font-style: normal;
+  padding: 10px;
+}
+ 
+
 ul {
   margin: 0;
   padding: 0;
 }
 a {
-  color: #ccc;
+  color: #00728E;
   text-decoration: none;
 }
  
 a:hover {
-  color: #ececec;
+  color: #00728E;
   text-decoration: underline;
 }
  
 #main {
-  width: 960px;
+  width: 825px;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 1);
 }
 header {
   padding: 0 10px;
   overflow: hidden;
 }
-h1 {
-  font-family: "Roboto Slab";
+h1, h2 {
   font-style: normal;
   font-weight: 300;
   line-height: 1.2;
-  src: local("Roboto Slab Light"), local("RobotoSlab-Light"), url("https://fonts.gstatic.com/s/robotoslab/v6/dazS1PrQQuCxC3iOAJFEJUo2lTMeWA_kmIyWrkNCwPc.woff2") format("woff2");
-  margin: 10;
+  margin: 0px;
+  color: #30363E;
 }
 
+h1 {
+    font-size: 36px;
+    
+}
 h2 {
-  font-family: "Roboto Slab";
-  font-style: normal;
-  font-weight: 200;
-  line-height: 1.2;
-  src: local("Roboto Slab Light"), local("RobotoSlab-Light"), url("https://fonts.gstatic.com/s/robotoslab/v6/dazS1PrQQuCxC3iOAJFEJUo2lTMeWA_kmIyWrkNCwPc.woff2") format("woff2");
-  margin: 10;
+  margin: 0px;
   text-align: left;
+  font-size: 30px;
 }
 
 nav ul, ul.entries {
@@ -52,12 +60,10 @@ nav ul, ul.entries {
 }
 nav li a {
   float: left;
-  margin: 5px; 
+  margin: 10px; 
+  color: #00AFDB;
 }
-.content {
-  padding: 10px;
-}
- 
+
 ul.entries li {
   position: relative;
   margin: 20px auto;
@@ -80,7 +86,7 @@ ul.entries a {
   color: #ececec;
 }
 ul.entries a:hover {
-  color: #fff;
+  color: #00728E;
 }
  
 footer {

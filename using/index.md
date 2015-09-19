@@ -2,9 +2,8 @@
 layout: default
 title: Using mantis
 ---
-
 <br>
-
+<section class="content">
 ## Preliminaries
 
 MANTiS is designed to process brain extracted T2 weighted images that are in the same orientation
