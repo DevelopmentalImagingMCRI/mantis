@@ -31,9 +31,9 @@ MANTiS is an SPM toolbox and can be accessed as follows.
 1. Click the green run button, and wait. The results for each phase will be stored in two folders, named Phase1 and Phase2.
 1. The components from which the pipeline is constructed are available from the batch editor tools menu.
 
-## Brain Extractions
+## Brain Extraction
 [A preliminary tool:](extraction)
 
-## Setting image origins.
+## Setting image origin.
 [Tool for setting image origin:](origin)
 
