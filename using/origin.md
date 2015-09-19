@@ -2,11 +2,7 @@
 layout: default
 title: Setting image origin
 ---
-
-<section role="banner">
-  <img src="{{ site.baseurl }}{{ post.url }}/img/banner.jpg" />
-</section>
-
+<br>
 # Image origin
 
 In SPM the image origin needs to be approximately equivalent to the
