@@ -7,5 +7,5 @@ title: Developmental Imaging Contacts
 <section class="content">
 Please use github issue tracker for mantis queries/bugs.
 
-1. [Developmental Imaging Group home page] (https://www.mcri.edu.au/ClinicalSciences/DevelopmentalImaging "DIGroup")
+1. [Developmental Imaging Group home page] (https://www.mcri.edu.au/clinical-sciences/developmental-imaging "DIGroup")
 
