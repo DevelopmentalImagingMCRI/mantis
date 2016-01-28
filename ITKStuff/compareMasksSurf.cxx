@@ -68,6 +68,8 @@ int main(int argc, char * argv[])
   CmdLineType CmdLineObj;
   ParseCmdLine(argc, argv, CmdLineObj);
   typedef itk::Image<unsigned char, dim> LabImType;
+  itk::ImageToImageFilterCommon::SetGlobalDefaultCoordinateTolerance(1000.0);
+  itk::ImageToImageFilterCommon::SetGlobalDefaultDirectionTolerance(1000.0);
 
   doCompare<LabImType>(CmdLineObj);
 
