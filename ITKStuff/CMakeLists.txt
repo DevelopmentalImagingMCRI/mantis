@@ -73,7 +73,7 @@ ENDIF(BUILD_WRAPPERS)
 #You can build more than one executable per project
 
 
-FOREACH(CurrentExe  "segCSF" "cleanWM" "compareMasks" "neonateScalper")
+FOREACH(CurrentExe  "segCSF" "cleanWM" "compareMasks" "neonateScalper" "compareMasksSurf")
 
 ADD_EXECUTABLE(${CurrentExe} ${CurrentExe}.cxx)
 TARGET_LINK_LIBRARIES(${CurrentExe} ${Libraries})

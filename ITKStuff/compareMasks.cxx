@@ -19,7 +19,7 @@ void ParseCmdLine(int argc, char* argv[],
   try
     {
     // Define the command line object.
-    CmdLine cmd("reorientImage ", ' ', "0.9");
+    CmdLine cmd("compareMasks ", ' ', "0.9");
 
     ValueArg<std::string> inArg("i","input","input image",true,"result","string");
     cmd.add( inArg );
