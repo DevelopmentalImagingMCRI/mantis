@@ -26,7 +26,7 @@ requiring write access to that folder.
 1. Fetch the package:
 
 ```bash
-git clone git@neuro.erc.monash.edu.au:richard.beare/mantis.git
+git clone https://github.com/DevelopmentalImagingMCRI/mantis.git
 cd mantis
 git submodule init
 git submodule update
