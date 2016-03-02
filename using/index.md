@@ -32,8 +32,27 @@ MANTiS is an SPM toolbox and can be accessed as follows.
 1. The components from which the pipeline is constructed are available from the batch editor tools menu.
 
 ## Brain Extraction
-[A preliminary tool:](extraction)
+[A preliminary tool:](extraction) is available for brain extraction in
+T2 weighted images.
 
-## Setting image origin.
-[Tool for setting image origin:](origin)
+## Setting image origin
+SPM segmentation utilises the image origin from the nifti files if it
+is set on the assumption that is positioned similarly to the origin of
+standard space. Strange results can occur if this isn't the
+case. [A tool for setting image origin:](origin) based on the centre
+of mass of the brain is available. It should be applied to brain
+extracted images.
 
+# Complete pipeline
+A pipeline performing brain extraction and origin setting can be
+constructed in the batch editor as per the image below:
+![mantis complete pipeline](https://github.com/DevelopmentalImagingMCRI/mantis/raw/master/Instructions/mantis_complete.png)
+
+# Changing templates
+The template image used by mantis is specified in a defaults file: *mantis/cg\_mantis\_defaults.m*
+A custom template can be used by changing the *mantis.opts.tpm* and *mantis.opts.tpm2*
+variables in this file to reference your own template. The components
+of the custom template must match those in the original (at least for
+gray, white and csf tissue classes), and changes will affect all
+toolbox users. Use multiple copies of the toolbox to simultaneously
+test different templates.
