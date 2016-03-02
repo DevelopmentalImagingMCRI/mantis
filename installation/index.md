@@ -3,7 +3,8 @@ layout: default
 title: Installation
 ---
 <br>
-<section class="content">
+{: .content}
+
 # Installing MANTiS
 MANTiS is provided as a combination of matlab and c++ code. It needs to be built for your
 platform. So far we have only tested on Linux systems. In principle it should also work
@@ -25,7 +26,7 @@ advantage of doing everything in the _spm/toolbox_ is that it is easier to updat
 The source code must be fetched using _git_, and there are several steps. Type the following into
 a terminal. These commands fetch the MANTiS code, plus some dependencies.
 
-```bash
+``` bash
 git clone https://github.com/DevelopmentalImagingMCRI/mantis.git
 cd mantis
 git submodule init
@@ -49,13 +50,13 @@ SuperBuild version
 
 The build process requires cmake and git and a compiler.
 
-```bash
+``` bash
 cd ITKStuff
 ```
 
 On linux/mac:
 
-```bash
+``` bash
 ## Make a build directory with the matlab architecture in the name
 
 export ARCH=$(echo "disp(sprintf('\n%s', computer)),quit" | matlab -nojvm -nodesktop -nosplash |tail -1)
@@ -65,7 +66,7 @@ mkdir Build.${ARCH}
 
 Finally, trigger a build:
 
-```bash
+``` bash
 cd Build.${ARCH}
 
 cmake ../SuperBuild
@@ -75,13 +76,13 @@ make -j2
 
 executables named _segCSF_ , _cleanWM_ and _neonateScalper_ will be in
 
-```bash
+``` bash
 mantis/ITKStuff/Build.${ARCH}/MANTiS-build/bin/
 ```
 
 You can delete build files to save space:
 
-```bash
+``` bash
 
 rm -rf ITK-build ITK-prefix ITK
 

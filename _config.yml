@@ -1,3 +1,9 @@
 name: MANTiS instructions
-highlighter: rouge
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+
 baseurl: /mantis
+highlighter: rouge
