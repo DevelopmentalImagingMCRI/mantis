@@ -3,6 +3,8 @@ layout: default
 title: Setting image origin
 ---
 <br>
+{: .content}
+
 # Image origin
 
 In SPM the image origin needs to be approximately equivalent to the
