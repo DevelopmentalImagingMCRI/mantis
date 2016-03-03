@@ -1,6 +1,8 @@
 # MANTiS
 ========
 
+[MANTiS home page](http://developmentalimagingmcri.github.io/mantis)
+
 The morphogical adaptive neonate tissue segmentation toolbox for spm.
 
 If you use this toolbox, please cite:
