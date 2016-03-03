@@ -44,10 +44,15 @@ case. [A tool for setting image origin:](origin) based on the centre
 of mass of the brain is available. It should be applied to brain
 extracted images.
 
-# Complete pipeline
+# Preprocessing pipeline
 A pipeline performing brain extraction and origin setting can be
 constructed in the batch editor as per the image below:
-![mantis complete pipeline](https://github.com/DevelopmentalImagingMCRI/mantis/raw/master/Instructions/mantis_complete.png)
+
+![Brain extraction tool](https://github.com/DevelopmentalImagingMCRI/mantis/raw/gh-pages/img/mantis_scalp_com.png)
+
+Make sure that the input volumes for the "Origin to COM" tool are set using the *Dependency* button and select *Simple watershed scalping: scalped structurals* from the options.
+
+Check the output images for successful scalping, then feed into MANTiS tissue classification.
 
 # Changing templates
 The template image used by mantis is specified in a defaults file: *mantis/cg\_mantis\_defaults.m*

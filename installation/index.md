@@ -41,6 +41,10 @@ git pull
 
 Updates to c++ parts will require a rebuild to take effect.
 
+## Developers
+
+[MANTiS is hosted on github](https://github.com/DevelopmentalImagingMCRI/mantis)
+
 ## Build ITK components
 The following commands use the SuperBuild process, that fetches a
 specific ITK version and builds it. This takes a while. If you know
