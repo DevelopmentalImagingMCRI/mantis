@@ -3,7 +3,7 @@
 
 #include <itkSmartPointer.h>
 #include <itkContourMeanDistanceImageFilter.h>
-
+#include <itkHausdorffDistanceImageFilter.h>
 
 typedef class CmdLineType
 {
@@ -52,13 +52,21 @@ void doCompare(const CmdLineType &CmdLineObj)
   typedef typename itk::ContourMeanDistanceImageFilter<ImType, ImType>  CompareImsType;
   typename CompareImsType::Pointer CompareIms = CompareImsType::New();
 
+    typedef typename itk::HausdorffDistanceImageFilter<ImType, ImType>  CompareImsType2;
+  typename CompareImsType2::Pointer CompareIms2 = CompareImsType2::New();
+
+
   CompareIms->SetInput1(mask);
   CompareIms->SetInput2(gtruth);
   CompareIms->SetUseImageSpacing(true);
   CompareIms->Update();
-  std::cout  << "MeanSurfDist" << std::endl;
-  std::cout  << CompareIms->GetMeanDistance();
-  std::cout << std::endl;
+  CompareIms2->SetInput1(mask);
+  CompareIms2->SetInput2(gtruth);
+  CompareIms2->SetUseImageSpacing(true);
+  CompareIms2->Update();
+  std::cout  << "MeanSurfDist,HausdorffDist" << std::endl;
+  std::cout  << CompareIms->GetMeanDistance() << ",";
+  std::cout  << CompareIms2->GetHausdorffDistance() << std::endl;
 }
 
 int main(int argc, char * argv[])
