@@ -19,7 +19,7 @@ Finally, as with typical SPM segmentation, the origins of the image need to be r
 to the template. There is a [tool in MANTiS](origin) to set the origin based on the centre of mass. This
 tool should also be applied to brain extracted images.
 
-##Getting started
+## Getting started
 
 MANTiS is an SPM toolbox and can be accessed as follows.
 
