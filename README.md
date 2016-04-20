@@ -86,10 +86,10 @@ rm -rf ITK-build ITK-prefix ITK
 MANTiS is an SPM toolbox and can be accessed as follows.
 
 1. Select mantis from the toolbox dropdown menu:
-![mantis from toolbox menu](https://neuro.erc.monash.edu.au/gitlab/richard.beare/mantis/raw/master/Instructions/mantis_toolbox_menu.png)
+![mantis from toolbox menu](https://github.com/DevelopmentalImagingMCRI/mantis/raw/master/Instructions/mantis_toolbox_menu.png)
 1. Select the complete pipeline option to load the pipeline in the batch editor.
-![mantis from local menu](https://neuro.erc.monash.edu.au/gitlab/richard.beare/mantis/raw/master/Instructions/mantis_menu2.png)
+![mantis from local menu](https://github.com/DevelopmentalImagingMCRI/mantis/raw/master/Instructions/mantis_menu2.png)
 1. Select scalped T2 structural scans from the batch editor file selection:
-![mantis from batch](https://neuro.erc.monash.edu.au/gitlab/richard.beare/mantis/raw/master/Instructions/mantis_file_selection.png)
+![mantis from batch](https://github.com/DevelopmentalImagingMCRI/mantis/raw/master/Instructions/mantis_file_selection.png)
 1. Click the green run button, and wait. The results for each phase will be stored in two folders, named Phase1 and Phase2.
-1. The components from which the pipeline is constructed are available from the batch editor tools menu.
+1. The components from which the pipeline is constructed are available from the batch editor tools 
