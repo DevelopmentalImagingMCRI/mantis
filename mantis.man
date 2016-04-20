@@ -1,7 +1,6 @@
 % __________________________________________________________________________
-%  Morphogical adaptive-neonatal-tissue-segmentation Toolbox
-%  http://
-%  http://
+%  Morphogical adaptive neonatal tissue segmentation Toolbox
+%  http://developmentalimagingmcri.github.io/mantis/
 %  
 %  Jian Chen, Richard Beare
 %  Developmental Imaging
