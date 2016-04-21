@@ -36,7 +36,7 @@
 % ==========================================================================
 % Segmentation method
 % ==========================================================================
-% The approach uses a multiphase approach, begining with an spm unified segmentation
+% MANTiS uses a multiphase approach, begining with an spm unified segmentation
 % using a neonate template, followed by morphological segmentation of CSF
 % to create a customized template, cleanup of hyperintense WM and a second
 % pass of unified segmentation using the customized template.
