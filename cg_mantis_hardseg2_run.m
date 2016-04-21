@@ -36,10 +36,6 @@ for k=1:numel(job.vols)
     % dimension
     [mxProb,mxProbIdx]=max(tissueY, [], 4);
     
-    % make a brain mask from the skull stripped structural
-    % and set any background voxels in the brain mask to csf
-    t2=spm_vol(structural);
-    t2V = 3*(spm_read_vols(t2) ~= 0);
     
     bg = mxProbIdx==tpmcomponents;
     
@@ -119,6 +115,13 @@ for k=1:numel(job.vols)
     
     % bits of white we've ditched become csf
     mxProbIdx(find(hardwhite2 & (~largestwhite)))=3;
+    % mask by the brain mask from the structural because
+    % there are sometimes weird leaks in the stage 2 segmentation.   
+    % make a brain mask from the skull stripped structural
+    t2=spm_vol(structural);
+    t2V = (spm_read_vols(t2) ~= 0);
+
+    mxProbIdx(find(t2V==0))=0;
     % finally save
     outvol = hardV(1);
     outvol.fname=oname;
