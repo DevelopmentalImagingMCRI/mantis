@@ -14,6 +14,11 @@
 % This toolbox implements the tissue classification method for T2 weighted
 % MRI scans of neonates described in ....
 % 
+% _Neonatal Brain Tissue Classification with Morphological Adaptation 
+% and Unified Segmentation_, Beare et al, Frontiers in Neuroinformatics, 2016.
+%
+% http://dx.doi.org/10.3389/fninf.2016.00012
+%
 % The pipeline is available from the mantis option under the Toolbox button
 % in the main SPM menu.
 %
