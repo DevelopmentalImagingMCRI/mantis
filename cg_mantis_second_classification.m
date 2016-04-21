@@ -86,9 +86,9 @@ for k=1:numel(job.vols)
    for i=1:tissueclasses
       [path, name, ext ] = fileparts(t2);
       thisone = fullfile(path, ['c' sprintf('%d', i) name ext]);
-      res.patientspecifictemplateseg{i}{k}= thisone;
+      res.patientspecifictemplateseg{i}{k,1}= thisone;
    end
    res.structural{k}=t2;
 end
-   
+   save('res.mat', 'res');
 end
