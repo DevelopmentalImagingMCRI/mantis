@@ -90,5 +90,5 @@ for k=1:numel(job.vols)
    end
    res.structural{k}=t2;
 end
-   save('res.mat', 'res');
+
 end
