@@ -18,13 +18,9 @@ Please cite the following publication if you use MANTiS:
   title =        {Neonatal Brain Tissue Classification with Morphological Adaptation and Unified Segmentation},
   journal =      {Frontiers in Neuroinformatics},
   year =         {2016},
-  OPTkey =       {},
   volume =       {10},
   number =       {12},
   DOI = {10.3389/fninf.2016.00012},
-  OPTpages =     {},
-  OPTmonth =     {},
-  OPTnote =      {},
   OPTannote =    {}
 }
 
