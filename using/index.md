@@ -12,7 +12,7 @@ as the template. Orientation in this case doesn't imply that the new image and t
 should be registered - simply that the data ordering is the same. We use the _fslswapdim_ tool
 to control data ordering.
 
-_All scans processed in a single batch must be in the same folder!_
+__All scans processed in a single batch must be in the same folder!__
 
 Brain extraction for the MANTiS validation studies were carried out using FSL _BET_. There
 is also a [preliminary tool](extraction) in MANTiS to perform brain extraction.
