@@ -8,7 +8,7 @@ set(proj ITK)  ## Use ITK convention of calling it ITK
 set(ITK_REPOSITORY git://itk.org/ITK.git)
 
 # NOTE: it is very important to update the ITK_DIR path with the
-set(ITK_TAG_COMMAND GIT_TAG v4.7.2
+set(ITK_TAG_COMMAND GIT_TAG v4.12.1
  )
 
 set( ITK_BUILD_SHARED_LIBS OFF )
