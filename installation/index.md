@@ -164,9 +164,9 @@ export PATH=/c/msys64/mingw64/bin:$PATH
 Configure the build:
 
 ```bash
-cmake -G Ninja \\
--DCMAKE_CXX_COMPILER=c:/msys64/mingw64/bin/c++.exe \\
--DCMAKE_EXE_LINKER_FLAGS="-static-libgcc -static-libstdc++-static -lpthread"  \\
+cmake -G Ninja \
+-DCMAKE_CXX_COMPILER=c:/msys64/mingw64/bin/c++.exe \
+-DCMAKE_EXE_LINKER_FLAGS="-static-libgcc -static-libstdc++-static -lpthread"  \
 ../SuperBuild
 ```
 Run the build:
