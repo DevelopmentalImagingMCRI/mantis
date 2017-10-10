@@ -134,6 +134,8 @@ pacman -S zip git  base-devel mingw-w64-x86_64-ninja \
 Note - some of the build tools issue complaints about path lengths, so carry out the build 
 somewhere near the top of the drive and move it to the spm/toolbox folder later.
 
+All the following commands are executed from the MSYS2 shell.
+
 Fetch mantis (as per linux etc):
 
 ``` bash
@@ -143,9 +145,7 @@ git submodule init
 git submodule update
 ```
 
-Create the build folder
-
-PCWIN64 is the result of the matlab command:
+Create the build folder. PCWIN64, in the paths below, is the result of the matlab command:
 ```matlab
 computer
 ```
