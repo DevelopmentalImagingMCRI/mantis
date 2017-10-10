@@ -95,7 +95,8 @@ rm -rf ITK-build ITK-prefix ITK
 ## Preliminary windows instructions
 
 We have only performed limited testing, with 64 bit Windows and the MSYS2 compiler
-suite. Substituting 32 bit alternatives may work for 32 bit windows.
+suite. Substituting 32 bit alternatives may work for 32 bit windows, provided you change the directory
+name, as discussed.
 
 ### Install MSYS 64 bit
 
@@ -114,7 +115,7 @@ pacman -Su
 ```
 
 repeat a few times until everything appears stable.
-## MSYS2 components
+### MSYS2 components
 
 Select the "all" option (default).
 
@@ -148,18 +149,25 @@ PCWIN64 is the result of the matlab command:
 ```matlab
 computer
 ```
+Change it if you get a different response on your system.
+```bash
 cd mantis/ITKStuff
 mkdir Build.PCWIN64
 cd Build.PCWIN64
 ```
 Set the msys path
+
 ```
 export PATH=/c/msys64/mingw64/bin:$PATH
 ```
-Trigger the build
 
-```
+Configure the build:
+
+```bash
 cmake -G Ninja -DCMAKE_CXX_COMPILER=c:/msys64/mingw64/bin/c++.exe -DCMAKE_EXE_LINKER_FLAGS="-static-libgcc -static-libstdc++-static -lpthread"  ../SuperBuild
+```
+Run the build:
+```bash
 ninja
 ```
 
