@@ -92,3 +92,87 @@ rm -rf ITK-build ITK-prefix ITK
 
 ```
 
+## Preliminary windows instructions
+
+We have only performed limited testing, with 64 bit Windows and the MSYS2 compiler
+suite. Substituting 32 bit alternatives may work for 32 bit windows.
+
+### Install MSYS 64 bit
+
+Fetch and run the [64 bit msys installer](http://www.msys2.org)
+
+Update the base system from the MSYS2 prompt:
+
+``` bash
+pacman -Syu
+```
+
+Close terminal, then reopen:
+
+``` bash
+pacman -Su
+```
+
+repeat a few times until everything appears stable.
+## MSYS2 components
+
+Select the "all" option (default).
+
+``` bash
+pacman -S zip git  base-devel mingw-w64-x86_64-ninja \
+              mingw-w64-x86_64-toolchain \
+              mingw-w64-x86_64-cmake \
+              mingw-w64-x86_64-extra-cmake-modules \
+              automake gcc-fortran
+
+
+```
+
+### Mantis
+
+Note - some of the build tools issue complaints about path lengths, so carry out the build 
+somewhere near the top of the drive and move it to the spm/toolbox folder later.
+
+Fetch mantis (as per linux etc):
+
+``` bash
+git clone https://github.com/DevelopmentalImagingMCRI/mantis.git
+cd mantis
+git submodule init
+git submodule update
+```
+
+Create the build folder
+
+PCWIN64 is the result of the matlab command:
+```matlab
+computer
+```
+cd mantis/ITKStuff
+mkdir Build.PCWIN64
+cd Build.PCWIN64
+```
+Set the msys path
+```
+export PATH=/c/msys64/mingw64/bin:$PATH
+```
+Trigger the build
+
+```
+cmake -G Ninja -DCMAKE_CXX_COMPILER=c:/msys64/mingw64/bin/c++.exe -DCMAKE_EXE_LINKER_FLAGS="-static-libgcc -static-libstdc++-static -lpthread"  ../SuperBuild
+ninja
+```
+
+Wait....
+
+When it is done, check that the executables run by double clicking on
+them from explorer. Exe files will be in 
+```bash
+mantis/ITKStuff/Build.PCWIN64/MANTiS-build/bin/
+```
+Nothing should happen, but if there is an error
+message about missing libraries, then something has gone wrong.
+
+Drag the entire mantis folder structure into the spm/toolbox folder.
+
+Give it a try.
