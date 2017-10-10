@@ -96,7 +96,7 @@ rm -rf ITK-build ITK-prefix ITK
 
 We have only performed limited testing, with 64 bit Windows and the MSYS2 compiler
 suite. Substituting 32 bit alternatives may work for 32 bit windows, provided you change the directory
-name, as discussed.
+name, as discussed below.
 
 ### Install MSYS 64 bit
 
