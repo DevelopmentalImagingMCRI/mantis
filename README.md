@@ -1,5 +1,4 @@
 # MANTiS
-========
 
 [MANTiS home page](http://developmentalimagingmcri.github.io/mantis)
 
@@ -23,8 +22,7 @@ If you use this toolbox, please cite:
 
 ```
 
-=================
-##Installation
+## Installation
 
 MANTiS uses ITK binaries that need to be built for your system, as we
 do not supply binary files. This process requires the following tools:
@@ -95,8 +93,8 @@ rm -rf ITK-build ITK-prefix ITK
 
 ```
 
-=============
-##Getting started
+
+## Getting started
 
 MANTiS is an SPM toolbox and can be accessed as follows.
 
