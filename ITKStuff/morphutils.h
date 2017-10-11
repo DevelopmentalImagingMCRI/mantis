@@ -37,7 +37,7 @@ typename TImage::SizeType getRadius(float xrad, float yrad, float zrad,
   long unsigned int mrad=0;
   for (unsigned k=0;k<TImage::ImageDimension;k++)
     {
-    mrad = std::max(mrad, result[k]);
+    mrad = std::max(mrad, (long unsigned int)result[k]);
     }
   if (mrad==0)
     {
