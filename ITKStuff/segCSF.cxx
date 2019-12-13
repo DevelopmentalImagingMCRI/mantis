@@ -111,7 +111,7 @@ typename RawImType::Pointer scaleSpaceSmooth(typename RawImType::Pointer input, 
   if (scales.size() == 0)
     {
     std::cerr << "At least one smoothing scale must be specified" << std::endl;
-    return(0);
+    return(nullptr);
     }
   Smoother->SetInput(input);
   Smoother->SetNormalizeAcrossScale(true);

@@ -11,7 +11,7 @@
 
 int readImageInfo(std::string filename, itk::ImageIOBase::IOComponentType *ComponentType, int *dim)
 {
-  itk::ImageIOBase::Pointer imageIO = itk::ImageIOFactory::CreateImageIO(filename.c_str(), itk::ImageIOFactory::ReadMode);
+  itk::ImageIOBase::Pointer imageIO = itk::ImageIOFactory::CreateImageIO(filename.c_str(), itk::ImageIOFactory::FileModeEnum::ReadMode);
   if (imageIO.IsNull())
     return 0;
 
@@ -81,7 +81,7 @@ typename TImage::Pointer readIm(std::string filename)
     {
     std::cout << ex << std::endl;
     std::cout << filename << std::endl;
-    return 0;
+    return nullptr;
     }
     result->DisconnectPipeline();
     return(result);
@@ -108,7 +108,7 @@ typename TImage::Pointer readImOriented(std::string filename, itk::SpatialOrient
     {
     std::cout << ex << std::endl;
     std::cout << filename << std::endl;
-    return 0;
+    return nullptr;
     }
     result->DisconnectPipeline();
     return(result);

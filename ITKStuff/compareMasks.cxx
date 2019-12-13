@@ -106,7 +106,7 @@ void doCompare(const CmdLineType &CmdLineObj)
 
 int main(int argc, char * argv[])
 {
-  itk::MultiThreader::SetGlobalMaximumNumberOfThreads(1);
+  itk::MultiThreaderBase::SetGlobalMaximumNumberOfThreads(1);
   const unsigned dim = 3;
   CmdLineType CmdLineObj;
   ParseCmdLine(argc, argv, CmdLineObj);

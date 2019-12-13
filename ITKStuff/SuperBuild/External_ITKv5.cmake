@@ -5,10 +5,11 @@
 
 
 set(proj ITK)  ## Use ITK convention of calling it ITK
-set(ITK_REPOSITORY git://itk.org/ITK.git)
+set(ITK_REPOSITORY https://github.com/InsightSoftwareConsortium/ITK.git)
+#set(ITK_REPOSITORY /tmp/ITK/)
 
 # NOTE: it is very important to update the ITK_DIR path with the
-set(ITK_TAG_COMMAND GIT_TAG v4.12.1
+set(ITK_TAG_COMMAND GIT_TAG v5.1rc01
  )
 
 set( ITK_BUILD_SHARED_LIBS OFF )
@@ -34,8 +35,9 @@ ExternalProject_Add(${proj}
   -DCMAKE_SKIP_RPATH:BOOL=ON
   -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
   -DITK_LEGACY_REMOVE:BOOL=ON
-  -DITK_BUILD_ALL_MODULES:BOOL=ON
-  -DITK_USE_REVIEW:BOOL=ON
+  -DITK_BUILD_DEFAULT_MODULES:BOOL=ON
+  -DModule_ParabolicMorphology=ON
+  -DModule_ITKReview:BOOL=ON
   -DUSE_WRAP_ITK:BOOL=OFF
   -DINSTALL_WRAP_ITK_COMPATIBILITY:BOOL=OFF
   BUILD_COMMAND ${BUILD_COMMAND_STRING}
@@ -45,4 +47,4 @@ ExternalProject_Add(${proj}
 
 
 ExternalProject_Get_Property(ITK install_dir)
-set(ITK_DIR "${install_dir}/lib/cmake/ITK-4.7" )
+set(ITK_DIR "${install_dir}/lib/cmake/ITK-5.1" )

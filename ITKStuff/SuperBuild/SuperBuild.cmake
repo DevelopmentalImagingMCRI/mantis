@@ -211,7 +211,7 @@ endif()
 if(ITK_USE_FFTW)
   list(APPEND ITK_DEPENDENCIES fftw)
 endif()
-include(External_ITKv4)
+include(External_ITKv5)
 list(APPEND ${CMAKE_PROJECT_NAME}_DEPENDENCIES ITK)
 
 
