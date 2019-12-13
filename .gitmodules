@@ -1,6 +1,3 @@
 [submodule "ITKStuff/tclap-code"]
 	path = ITKStuff/tclap-code
 	url = git://git.code.sf.net/p/tclap/code
-[submodule "ITKStuff/Modules/parabolicMorphology"]
-	path = ITKStuff/Modules/parabolicMorphology
-	url = https://github.com/richardbeare/parabolicMorphology.git
