@@ -9,9 +9,9 @@
 #include <itkOrientImageFilter.h>
 #include <itkSpatialOrientation.h>
 
-int readImageInfo(std::string filename, itk::ImageIOBase::IOComponentType *ComponentType, int *dim)
+int readImageInfo(std::string filename, itk::ImageIOBase::IOComponentEnum *ComponentType, int *dim)
 {
-  itk::ImageIOBase::Pointer imageIO = itk::ImageIOFactory::CreateImageIO(filename.c_str(), itk::ImageIOFactory::FileModeEnum::ReadMode);
+  itk::ImageIOBase::Pointer imageIO = itk::ImageIOFactory::CreateImageIO(filename.c_str(), itk::IOFileModeEnum::ReadMode);
   if (imageIO.IsNull())
     return 0;
 

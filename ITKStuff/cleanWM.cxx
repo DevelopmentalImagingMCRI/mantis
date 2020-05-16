@@ -140,7 +140,7 @@ int main(int argc, char * argv[])
 
   const int dimension = 3;
   int dim1 = 0;
-  itk::ImageIOBase::IOComponentType ComponentType;
+  itk::ImageIOBase::IOComponentEnum ComponentType;
   if (!readImageInfo(CmdLineObj.InputIm, &ComponentType, &dim1)) 
     {
     std::cerr << "Failed to open " << CmdLineObj.InputIm << std::endl;
@@ -163,13 +163,13 @@ int main(int argc, char * argv[])
   itk::ImageToImageFilterCommon::SetGlobalDefaultDirectionTolerance(1000.0);
   switch (ComponentType) 
     {
-    case (itk::ImageIOBase::SHORT):
+    case (itk::ImageIOBase::IOComponentEnum::SHORT):
       doFilt<short, dimension>(CmdLineObj);
       break;
-    case (itk::ImageIOBase::USHORT):
+    case (itk::ImageIOBase::IOComponentEnum::USHORT):
       doFilt<unsigned short, dimension>(CmdLineObj);
       break;
-    case (itk::ImageIOBase::INT):
+    case (itk::ImageIOBase::IOComponentEnum::INT):
       doFilt<int, dimension>(CmdLineObj);
       break;
     default:
