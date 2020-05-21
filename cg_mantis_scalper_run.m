@@ -19,7 +19,7 @@ for k=1:numel(job.vols)
     
     OUTPREF=fullfile(srcdir, [prefix corename ext]);
     OUTMASK=fullfile(srcdir, [prefix 'mask' corename ext]);
-    command=[exe ' --input ' T2  ' --output ' OUTPREF ' --mask ' OUTMASK];
+    command=['unset LD_LIBRARY_PATH; ' exe ' --input ' T2  ' --output ' OUTPREF ' --mask ' OUTMASK];
     system(command);
     outnames{k}=OUTPREF;
     mantisCopyHeader(T2, outnames{k});

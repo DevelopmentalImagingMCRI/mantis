@@ -27,7 +27,7 @@ for k=1:numel(job.vols)
     CSF=fullfile( Phase1Dir, ['c3' corename ext]);
     GM=fullfile( Phase1Dir, ['c1' corename ext]);
     OUTPREF=fullfile(Phase2Dir, corename);
-    command=[exe ' --input ' T2 ' --csf ' CSF ' --grey ' GM ' --outputprefix ' OUTPREF];
+    command=['unset LD_LIBRARY_PATH; ' exe ' --input ' T2 ' --csf ' CSF ' --grey ' GM ' --outputprefix ' OUTPREF];
     system(command);
     outnames{k}=fullfile(Phase2Dir, [corename SUFF ext]);
     mantisCopyHeader(CSF, outnames{k});
