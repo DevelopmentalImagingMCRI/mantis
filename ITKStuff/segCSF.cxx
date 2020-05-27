@@ -15,6 +15,8 @@
 #include <itkMorphologicalWatershedFromMarkersImageFilter.h>
 #include <itkBinaryShapeOpeningImageFilter.h>
 #include <itkGradientMagnitudeImageFilter.h>
+#include <itkBinaryErodeParaImageFilter.h>
+
 #ifdef IFTWS
 #include "itkIFTWatershedFromMarkersImageFilter.h"
 #endif
@@ -36,7 +38,7 @@ typedef class CmdLineType
 {
 public:
   std::string InputIm, OutputImPrefix; //
-  std::string GProbIm, CSFProbIm;
+  std::string GProbIm, CSFProbIm, CerProbIm;
 } CmdLineType;
 
 bool debug=false;
@@ -75,6 +77,9 @@ void ParseCmdLine(int argc, char* argv[],
     ValueArg<std::string> csfArg("","csf","CSF prob image", true,"","string");
     cmd.add( csfArg );
 
+    ValueArg<std::string> cerArg("","cerebellum","Cerebellum prob image", true,"","string");
+    cmd.add( cerArg );
+
     ValueArg<std::string> prefixArg("","prefix","write output images with this prefix",false, debugprefix, "string");
     cmd.add( prefixArg );
     SwitchArg debugArg("d", "debug", "save debug images", debug);
@@ -87,6 +92,8 @@ void ParseCmdLine(int argc, char* argv[],
     CmdLineObj.OutputImPrefix = outArg.getValue();
     CmdLineObj.GProbIm = greyArg.getValue();
     CmdLineObj.CSFProbIm = csfArg.getValue();
+    CmdLineObj.CerProbIm = cerArg.getValue();
+    
     debugprefix = prefixArg.getValue();
     debug=debugArg.getValue();
     }
@@ -148,6 +155,7 @@ void doSeg(const CmdLineType &CmdLineObj)
   // load the prob images and create a brain mask
   FIPtr grey  = readIm<FloatImType>(CmdLineObj.GProbIm);
   FIPtr csf   = readIm<FloatImType>(CmdLineObj.CSFProbIm);
+  FIPtr cer   = readIm<FloatImType>(CmdLineObj.CerProbIm);
 
   IPtr T2 = readIm<ImageType>(CmdLineObj.InputIm);
 
@@ -157,6 +165,7 @@ void doSeg(const CmdLineType &CmdLineObj)
   // figure out a mean wm intensity
   MIPtr csfmask = doThresh<FloatImType, MaskImType>(csf, 0.9, 3);
   MIPtr gmmask = doThresh<FloatImType, MaskImType>(grey, 0.7, 2);
+  MIPtr cermask = doThresh<FloatImType, MaskImType>(cer, 0.9, 1);
 
   itk::Instance< itk::BinaryThresholdImageFilter<ImageType, MaskImType> > T2Thresh;
   T2Thresh->SetInput(T2);
@@ -174,23 +183,52 @@ void doSeg(const CmdLineType &CmdLineObj)
   SizeFilter->SetForegroundValue(3);
   writeImDbg<MaskImType>(SizeFilter->GetOutput(), "csfsize");
 
+  itk::Instance<itk::BinaryErodeParaImageFilter<MaskImType> > Eroder;
+  Eroder->SetInput(cermask);
+  Eroder->SetRadius(3);
+  Eroder->SetUseImageSpacing(true);
+
+  
+  // object size filter on the cerebellum mask
+  itk::Instance< itk::BinaryShapeOpeningImageFilter< MaskImType> > SizeFilterCereb;
+  SizeFilterCereb->SetInput(Eroder->GetOutput());
+  SizeFilterCereb->SetLambda(500);
+  SizeFilterCereb->SetForegroundValue(1);
+
+  itk::Instance<itk::BinaryThresholdImageFilter<MaskImType, MaskImType> > Shifter;
+  Shifter->SetInput(SizeFilterCereb->GetOutput());
+  Shifter->SetUpperThreshold(0);
+  Shifter->SetLowerThreshold(0);
+  Shifter->SetInsideValue(0);
+  Shifter->SetOutsideValue(2);
+
+  writeImDbg<MaskImType>(Shifter->GetOutput(), "cerebsize");
+
+  
   itk::Instance< itk::NaryMaximumImageFilter<MaskImType, MaskImType> > MaxFilt;
   MaxFilt->SetInput(0, T2Thresh->GetOutput());
   MaxFilt->SetInput(1, gmmask);
   MaxFilt->SetInput(2, SizeFilter->GetOutput());
+  MaxFilt->SetInput(3, SizeFilterCereb->GetOutput());
 
   writeImDbg<MaskImType>(MaxFilt->GetOutput(), "allmarkers");
 
 #ifndef IFTWS
 
-  // use half min voxel size
+  // The original assumption in creating a gradient smoothing scale
+  // was something related to the smallest voxel dimension and something assumed
+  // to be much smaller (0.25).
+  // In the old days the number related to voxel size would be around 1mm.
+  // Now, however, we are likely to end up with something close to the 0.25.
+  // Thus we will include a large scale if the smallest voxel dimension is too
+  // small.
 
   float minvxsz=1000.0;
 
   for (unsigned i = 0; i < ImageType::ImageDimension; i++) {
-    if (T2->GetSpacing()[i] < minvxsz) minvxsz= T2->GetSpacing()[i];
+    minvxsz = std::min(minvxsz, (float)T2->GetSpacing()[i]);
   }
-  //itk::Instance< itk::GradientMagnitudeRecursiveGaussianImageFilter<ImageType, ImageType > > GradFilt;
+  //minvxsz = std::max(minvxsz, 2.0f);
   itk::Instance <itk::GradientMagnitudeImageFilter<ImageType, ImageType> > GradFilt;
   GradFilt->SetInput(T2);
   GradFilt->SetUseImageSpacingOn();
