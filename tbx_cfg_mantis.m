@@ -17,6 +17,7 @@ p2seg.tag = 'phase2';
 p2seg.name = 'Mantis: Phase 2 tissue classification';
 mover=cg_mantis_movetosubdir;
 wscsf=cg_mantis_ws_csf;
+mskcsf=cg_mantis_make_csf_mask;
 wmclean=cg_mantis_wm_clean;
 mantisfolderinfo = cg_mantis_phases;
 deformations=cg_mantis_deformations;
@@ -37,7 +38,7 @@ job.tag     = 'mantis';
 job.name    = 'Morphological adaptive neonatal tissue segmentation';
 job.help    = {'Help needed'};
 %job.values  = {segrun1 segcsf wmclean segrun2 hardlabel calvol batchrun};
-job.values={p1seg mover wscsf wmclean mantisfolderinfo deformations template ...
+job.values={p1seg mover wscsf mskcsf wmclean mantisfolderinfo deformations template ...
     firstnorm maketpm p2seg finalseg hardseg1 hardseg2 scalper com};
 
 %-------------------------------------------------------------------------
