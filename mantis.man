@@ -26,7 +26,7 @@
 % the batch editor with the mantis batch. Use the file selector at the
 % top of the page to choose files for processing.
 %
-% Selecting the "simplified mantis segmenttion pipeline" menu will
+% Selecting the "simplified mantis segmentation pipeline" menu will
 % choose a version that does not use the watershed segmentation of
 % CSF, but passes the standard SPM segmentation instead. This is intended
 % for cases in which ventricles appear normal but the image voxels are
