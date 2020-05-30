@@ -33,6 +33,9 @@ mantis.opts.itk       = {fullfile(spm('dir'),'toolbox','mantis', 'ITKStuff', ...
 mantis.opts.phase1 = {'Phase1'};
 mantis.opts.phase2 = {'Phase2'};
 
+%=======================================================================
+% Smoothing of CSF for stage 2 atlas
+mantis.opts.csfsmooth = 7;
 % Predefined pipelines
 spmversion=spm('Ver');
 if strcmp(spmversion, 'SPM12')

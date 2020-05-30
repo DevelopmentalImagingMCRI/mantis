@@ -32,9 +32,11 @@ for k=1:numel(job.vols)
     % This is done when generating markers for watershed
     csfVol = mantis_attribute_filter(csfVol, 500/vxsz);
     csfmaskV = csfV;
+    %csfmaskV.fname = fullfile(Phase2Dir, [corename '_csftmp' ext]);
     csfmaskV.fname = outnames{k};
     spm_write_vol(csfmaskV, csfVol);
-    %mantisCopyHeader(CSF, outnames{k});
+    % can't smooth here, otherwise no good as a marker in
+    % reconstruction
     T2names{k}=T2;
 end
 

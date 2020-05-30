@@ -13,6 +13,7 @@ function res = cg_mantis_make_tpm_run( job )
 %SUFF='WSCSF'; % is this right
 % We need to be able to process multiple structural scans
 tpmcomponents = cg_mantis_get_defaults('opts.tpmcomponents');
+csfsmooth = cg_mantis_get_defaults('opts.csfsmooth');
 
 for k=1:numel(job.vols)
     Phase1Dir = job.parent{k};
@@ -39,14 +40,20 @@ for k=1:numel(job.vols)
     %%%%%%%%%%%%%%%%%%%%%%%%%%
     %Load spm csf segmentation
     %%%%%%%%%%%%%%%%%%%%%%%%%%
-    SPMCSF=fullfile( Phase1Dir, ['c3' corename ext]);
+    SPMCSFraw=fullfile( Phase1Dir, ['c3' corename ext]);
+    SPMCSF=fullfile( Phase1Dir, ['smc3' corename ext]);
+    spm_smooth(SPMCSFraw, SPMCSF, csfsmooth);
     Vspmcsf = spm_vol(SPMCSF);
     [Yspmcsf, XZY]=spm_read_vols(Vspmcsf);
     
     Ycsfcom = Ybes.*Yspmcsf; 
             
     %Load WS csf segmentation
-    WSCSF = fullfile(Phase2Dir, [corename '_csfmask.nii']);
+    WSCSFmask = fullfile(Phase2Dir, [corename '_csfmask.nii']);
+    % target for smoothing
+    WSCSF = fullfile(Phase2Dir, [corename '_csfmasksmooth.nii']);
+    spm_smooth(WSCSFmask, WSCSF, csfsmooth);
+
     Vwscsf = spm_vol(WSCSF);
     [Ywscsf, XZY]=spm_read_vols(Vwscsf);
     
