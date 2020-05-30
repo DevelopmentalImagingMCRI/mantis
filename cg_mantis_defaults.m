@@ -20,7 +20,7 @@ mantis.opts.tpmcomponents = 9;
 % Firstnorm
 %=======================================================================
 mantis.opts.tpm2d       = {fullfile(spm('dir'),'toolbox','mantis','template')}; % Template directory
-mantis.opts.tpm2       = {fullfile(spm('dir'),'toolbox','mantis','template', 'Firstnorm.nii')}; % Template directory
+mantis.opts.tpm2       = {fullfile(spm('dir'),'toolbox','mantis','template', 'FirstnormB.nii')}; % Template directory
 mantis.opts.tpm2components = 9;
 
 % ITK code

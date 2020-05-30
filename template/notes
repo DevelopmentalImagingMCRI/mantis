@@ -1,0 +1,14 @@
+# Brain edge image with midline structures:
+
+fslsplit NeonateTPM.nii
+/usr/lib/mrtrix3/bin/warpinit BrainEdge.nii pos-[].nii
+
+fslmaths pos-0.nii -abs -thr 7 -bin -sub 1 -mul -1 mid.nii.gz
+fslmaths vol0000.nii.gz -thr 0.2 -bin -dilF -dilF -dilF -dilF -ero -ero -ero -ero -mas mid.nii.gz mm
+
+fslmaths BrainEdge.nii -max mm.nii.gz BrainEdgeMid.nii
+
+fslsplit Firstnorm.nii ff
+
+fslmerge -t FirstnormB.nii ff000[0-7].nii.gz BrainEdgeMid.nii
+
