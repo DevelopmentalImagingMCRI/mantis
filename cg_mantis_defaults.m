@@ -37,6 +37,7 @@ mantis.opts.phase2 = {'Phase2'};
 spmversion=spm('Ver');
 if strcmp(spmversion, 'SPM12')
     mantis.opts.mainpipeline = fullfile(spm('dir'),'toolbox','mantis','mantis_complete_segmentation12.m');
+    mantis.opts.mainpipelinesimple = fullfile(spm('dir'),'toolbox','mantis','mantis_complete_segmentation_simplecsf_spm12.m');
 else
     mantis.opts.mainpipeline = fullfile(spm('dir'),'toolbox','mantis','mantis_complete_segmentation8.m');
 end

@@ -50,8 +50,10 @@ for k=1:numel(job.vols)
     Vwscsf = spm_vol(WSCSF);
     [Ywscsf, XZY]=spm_read_vols(Vwscsf);
     
-    Ycsfcom(:,:,:,2)=Ywscsf;
-    Ycsf=squeeze(max(Ycsfcom, [], 4));
+    Ycsf=Ywscsf;
+
+    %Ycsfcom(:,:,:,2)=Ywscsf;
+    %Ycsf=squeeze(max(Ycsfcom, [], 4));
       
     %Put CSF to tissue map at position number 3        
     YtisN = Ytis;
