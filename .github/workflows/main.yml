@@ -37,6 +37,6 @@ jobs:
           git submodule update
           mkdir ${GITHUB_WORKSPACE}/ITKStuff/Build.GLNXA64
           cd ${GITHUB_WORKSPACE}/ITKStuff/Build.GLNXA64
-          cmake ../Superbuild
+          cmake ../SuperBuild
           make -j2
           rm -rf ITK-build ITK-prefix ITK
