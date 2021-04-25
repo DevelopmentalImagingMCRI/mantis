@@ -36,11 +36,84 @@ jobs:
           cd ${GITHUB_WORKSPACE}/mantis/ITKStuff/Build.GLNXA64
           cmake ../SuperBuild
           make -j2
-          rm -rf ITK-build ITK-prefix ITK
+          rm -rf ITK-build ITK-prefix ITK CMakeFiles MANTiS-prefix
           cd ${GITHUB_WORKSPACE}
+          rm -rf mantis/.git
           tar czf mantis_ubuntu.tgz mantis
-      - uses: meeDamian/github-release@2.0
+      - uses: AButler/upload-release-assets@v2.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: 'v1.0'
           files: 'mantis_ubuntu.tgz'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          release-tag: v1.0
+          
+#      - uses: meeDamian/github-release@2.0
+#        with:
+#          token: ${{ secrets.GITHUB_TOKEN }}
+#          tag: 'v1.0'
+#          files: 'mantis_ubuntu.tgz'
+#          gzip: 'false'
+#         allow_override: 'true'
+
+  buildOSX:
+    # The type of runner that the job will run on
+    runs-on: macos-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          path: 'mantis'
+          submodules: 'true'
+ 
+      # Runs a set of commands using the runners shell
+      - name: Run ubuntu build
+        run: |
+          echo Add other actions to build,
+          mkdir ${GITHUB_WORKSPACE}/mantis/ITKStuff/Build.MACI64
+          cd ${GITHUB_WORKSPACE}/mantis/ITKStuff/Build.MACI64
+          cmake ../SuperBuild
+          make -j2
+          rm -rf ITK-build ITK-prefix ITK CMakeFiles MANTiS-prefix
+          cd ${GITHUB_WORKSPACE}
+          rm -rf mantis/.git
+          tar czf mantis_osx.tgz mantis
+      - uses: AButler/upload-release-assets@v2.0
+        with:
+          files: 'mantis_osx.tgz'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          release-tag: v1.0
+
+  buildWindows:
+    runs-on: windows-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          path: 'mantis'
+          submodules: 'true'
+      - name: Env
+        run: |
+          echo ${GITHUB_WORKSPACE}
+          env
+        shell: bash
+      - name: Getting setup
+        run: |
+          choco install Ninja
+          mkdir ${GITHUB_WORKSPACE}/B/
+          export PATH=/c/msys64/mingw64/bin:$PATH
+          cd ${GITHUB_WORKSPACE}/B
+          cmake -G Ninja -DCMAKE_CXX_COMPILER=c:/msys64/mingw64/bin/c++.exe -DCMAKE_EXE_LINKER_FLAGS="-static-libgcc -static-libstdc++ -static -lpthread" ../mantis/ITKStuff/SuperBuild
+          ninja
+          rm -rf ITK-build ITK-prefix ITK CMakeFiles MANTiS-prefix
+          cd ${GITHUB_WORKSPACE}
+          rm -rf mantis/.git
+          mv ${GITHUB_WORKSPACE}/B ${GITHUB_WORKSPACE}/mantis/ITKStuff/Build.PCWIN64
+          7z a mantis_windows.zip  mantis -r
+        shell: bash
+
+      - uses: AButler/upload-release-assets@v2.0
+        with:
+          files: 'mantis_windows.zip'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          release-tag: v1.0
