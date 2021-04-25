@@ -33,11 +33,10 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          cd ${GITHUB_WORKSPACE}/mantis/
           git submodule init
           git submodule update
-          mkdir ${GITHUB_WORKSPACE}/mantis/ITKStuff/Build.GLNXA64
-          cd ${GITHUB_WORKSPACE}/mantis/ITKStuff/Build.GLNXA64
+          mkdir ${GITHUB_WORKSPACE}/ITKStuff/Build.GLNXA64
+          cd ${GITHUB_WORKSPACE}/ITKStuff/Build.GLNXA64
           cmake ../Superbuild
           make -j2
           rm -rf ITK-build ITK-prefix ITK
