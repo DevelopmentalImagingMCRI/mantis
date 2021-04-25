@@ -41,6 +41,6 @@ jobs:
           tar czf mantis_ubuntu.tgz mantis
       - uses: meeDamian/github-release@2.0
         with:
-          token: ${{ secrets.MANTIS_BUILD_RELEASE }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           tag: 'v1.0'
           files: 'mantis_ubuntu.tgz'
