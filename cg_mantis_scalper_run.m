@@ -6,7 +6,8 @@ exedir = char(cg_mantis_get_defaults('opts.itk'));
 % Do we need to do something for windows?
 exe = fullfile(exedir, 'neonateScalper'); 
 
-
+exeprefix = char(cg_mantis_get_defaults('opts.externalcommandprefix'));
+exe = [exeprefix exe];
 % We need to be able to process multiple structural scans
 for k=1:numel(job.vols)
     prefix = job.scalperprefix;
@@ -19,7 +20,7 @@ for k=1:numel(job.vols)
     
     OUTPREF=fullfile(srcdir, [prefix corename ext]);
     OUTMASK=fullfile(srcdir, [prefix 'mask' corename ext]);
-    command=['unset LD_LIBRARY_PATH; ' exe ' --input ' T2  ' --output ' OUTPREF ' --mask ' OUTMASK];
+    command=[exe ' --input ' T2  ' --output ' OUTPREF ' --mask ' OUTMASK];
     system(command);
     outnames{k}=OUTPREF;
     mantisCopyHeader(T2, outnames{k});

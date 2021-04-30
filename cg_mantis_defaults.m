@@ -24,10 +24,16 @@ mantis.opts.tpm2       = {fullfile(spm('dir'),'toolbox','mantis','template', 'Fi
 mantis.opts.tpm2components = 9;
 
 % ITK code
+ARCH = computer;
 %=======================================================================
 mantis.opts.itk       = {fullfile(spm('dir'),'toolbox','mantis', 'ITKStuff', ...
-    ['Build.' computer], 'MANTiS-build', 'bin')}; % Itk binaries
-
+    ['Build.' ARCH], 'MANTiS-build', 'bin')}; % Itk binaries
+if strcmp(ARCH, 'PCWIN64')
+    mantis.opts.externalcommandprefix = {''};
+else
+    mantis.opts.externalcommandprefix = {'unset LD_LIBRARY_PATH; '};
+end
+    
 %=======================================================================
 % Folder names
 mantis.opts.phase1 = {'Phase1'};

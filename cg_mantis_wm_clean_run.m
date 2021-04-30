@@ -12,6 +12,9 @@ exedir = char(cg_mantis_get_defaults('opts.itk'));
 % Do we need to do something for windows?
 exe = fullfile(exedir, 'cleanWM'); 
 
+exeprefix = char(cg_mantis_get_defaults('opts.externalcommandprefix'));
+exe = [exeprefix exe];
+
 SUFF='_csfmask'; % is this right
 % We need to be able to process multiple structural scans
 
@@ -23,7 +26,7 @@ for k=1:numel(job.vols)
     WSCSF=fullfile(Phase2Dir, [imname SUFF '.nii']);
     %T2=fullfile( srcdir, [corename ext]);
     OUTNAME=fullfile(Phase2Dir, [imname '.nii']);
-    command=['unset LD_LIBRARY_PATH; ' exe ' -i ' T2 ' -m ' WSCSF ' -o ' OUTNAME ];
+    command=[exe ' -i ' T2 ' -m ' WSCSF ' -o ' OUTNAME ];
     system(command);
     outnames{k}=OUTNAME;
     mantisCopyHeader(WSCSF, OUTNAME);

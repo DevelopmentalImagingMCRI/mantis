@@ -11,7 +11,8 @@ function res = cg_mantis_ws_csf_run( job )
 exedir = char(cg_mantis_get_defaults('opts.itk'));
 % Do we need to do something for windows?
 exe = fullfile(exedir, 'segCSF'); 
-
+exeprefix = char(cg_mantis_get_defaults('opts.externalcommandprefix'));
+exe = [exeprefix exe];
 
 %Phase2Dir = char(cg_mantis_get_defaults('opts.phase2'));
 % Suffix used by segCSF
@@ -27,7 +28,7 @@ for k=1:numel(job.vols)
     CSF=fullfile( Phase1Dir, ['c3' corename ext]);
     GM=fullfile( Phase1Dir, ['c1' corename ext]);
     OUTPREF=fullfile(Phase2Dir, corename);
-    command=['unset LD_LIBRARY_PATH; ' exe ' --input ' T2 ' --csf ' CSF ' --grey ' GM ' --outputprefix ' OUTPREF];
+    command=[exe ' --input ' T2 ' --csf ' CSF ' --grey ' GM ' --outputprefix ' OUTPREF];
     system(command);
     outnames{k}=fullfile(Phase2Dir, [corename SUFF ext]);
     mantisCopyHeader(CSF, outnames{k});
