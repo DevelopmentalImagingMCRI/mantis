@@ -5,10 +5,10 @@ name: CI
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  #push:
+  #  branches: [ master ]
+  #pull_request:
+  #  branches: [ master ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -44,7 +44,7 @@ jobs:
         with:
           files: 'mantis_ubuntu.tgz'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          release-tag: v1.0
+          #release-tag: v1.0
           
 #      - uses: meeDamian/github-release@2.0
 #        with:
@@ -82,7 +82,7 @@ jobs:
         with:
           files: 'mantis_osx.tgz'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          release-tag: v1.0
+          #release-tag: v1.0
 
   buildWindows:
     runs-on: windows-latest
@@ -116,4 +116,4 @@ jobs:
         with:
           files: 'mantis_windows.zip'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          release-tag: v1.0
+          #release-tag: v1.0
