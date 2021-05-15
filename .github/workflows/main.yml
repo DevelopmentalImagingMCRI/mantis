@@ -1,14 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: BUILD
 
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  #push:
+  #  branches: [ master ]
+  #pull_request:
+  #  branches: [ master ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -23,11 +23,16 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: oprypin/find-latest-tag@v1
+        with:
+          repository: DevelopmentalImagingMCRI/mantis
+          releases-only: true
+        id: tagfinder
+      - run: echo "Version ${{ steps.tagfinder.outputs.tag }}"
       - uses: actions/checkout@v2
         with:
           path: 'mantis'
           submodules: 'true'
- 
       # Runs a set of commands using the runners shell
       - name: Run ubuntu build
         run: |
@@ -44,16 +49,8 @@ jobs:
         with:
           files: 'mantis_ubuntu.tgz'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          release-tag: v1.0
+          release-tag: ${{ steps.tagfinder.outputs.tag }}
           
-#      - uses: meeDamian/github-release@2.0
-#        with:
-#          token: ${{ secrets.GITHUB_TOKEN }}
-#          tag: 'v1.0'
-#          files: 'mantis_ubuntu.tgz'
-#          gzip: 'false'
-#         allow_override: 'true'
-
   buildOSX:
     # The type of runner that the job will run on
     runs-on: macos-latest
@@ -61,11 +58,15 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: oprypin/find-latest-tag@v1
+        with:
+          repository: DevelopmentalImagingMCRI/mantis
+          releases-only: true
+        id: tagfinder
       - uses: actions/checkout@v2
         with:
           path: 'mantis'
           submodules: 'true'
- 
       # Runs a set of commands using the runners shell
       - name: Run ubuntu build
         run: |
@@ -82,12 +83,17 @@ jobs:
         with:
           files: 'mantis_osx.tgz'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          release-tag: v1.0
+          release-tag: ${{ steps.tagfinder.outputs.tag }}
 
   buildWindows:
     runs-on: windows-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: oprypin/find-latest-tag@v1
+        with:
+          repository: DevelopmentalImagingMCRI/mantis
+          releases-only: true
+        id: tagfinder
       - uses: actions/checkout@v2
         with:
           path: 'mantis'
@@ -116,4 +122,4 @@ jobs:
         with:
           files: 'mantis_windows.zip'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          release-tag: v1.0
+          release-tag: ${{ steps.tagfinder.outputs.tag }}
