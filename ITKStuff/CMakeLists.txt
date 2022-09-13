@@ -1,6 +1,6 @@
 #Change PROJECT_NAME to the name of your project
 PROJECT(MANTiS)
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.1)
 # set the name of the input image used to run the test
 SET(INPUT_IMAGE ${CMAKE_CURRENT_SOURCE_DIR}/images/S01.native.mri.nii.gz)
 
