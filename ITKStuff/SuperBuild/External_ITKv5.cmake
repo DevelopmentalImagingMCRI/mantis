@@ -5,12 +5,12 @@
 
 
 set(proj ITK)  ## Use ITK convention of calling it ITK
-#set(ITK_REPOSITORY https://github.com/InsightSoftwareConsortium/ITK.git)
-set(ITK_REPOSITORY https://github.com/richardbeare/ITK.git)
+set(ITK_REPOSITORY https://github.com/InsightSoftwareConsortium/ITK.git)
+#set(ITK_REPOSITORY https://github.com/richardbeare/ITK.git)
 
 # NOTE: it is very important to update the ITK_DIR path with the
 # version number at the end of this file
-set(ITK_TAG_COMMAND GIT_TAG 89581d46a00d680e5544c870f4328a1a5d64e798
+set(ITK_TAG_COMMAND GIT_TAG 8be208ee1f04d09912523401e78ba7bb14a89d6f
  )
 
 set( ITK_BUILD_SHARED_LIBS OFF )

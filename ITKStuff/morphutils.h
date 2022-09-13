@@ -73,7 +73,7 @@ typename TImage::Pointer doErodeMM(const typename TImage::Pointer input, float x
   filt->SetInput(input);
   filt->SetKernel(kernel);
 
-  filt->SetAlgorithm(FiltType::VHGW);
+  filt->SetAlgorithm(FiltType::AlgorithmEnum::VHGW);
 
   typename TImage::Pointer result = filt->GetOutput();
   result->Update();
@@ -100,7 +100,7 @@ typename TImage::Pointer doErodeMM2(const typename TImage::Pointer input, float 
   filt->SetKernel(kernel);
   filt->SetBoundary(0);
 
-  filt->SetAlgorithm(FiltType::VHGW);
+  filt->SetAlgorithm(FiltType::AlgorithmEnum::VHGW);
 
   typename TImage::Pointer result = filt->GetOutput();
   result->Update();
@@ -156,7 +156,7 @@ typename TImage::Pointer doErode(const typename TImage::Pointer input, int xrad,
   filt->SetInput(input);
   filt->SetKernel(kernel);
 
-  filt->SetAlgorithm(FiltType::VHGW);
+  filt->SetAlgorithm(FiltType::AlgorithmEnum::VHGW);
   typename TImage::Pointer result = filt->GetOutput();
   result->Update();
   result->DisconnectPipeline();
@@ -190,7 +190,7 @@ typename TImage::Pointer doErode2(const typename TImage::Pointer input, int xrad
   filt->SetKernel(kernel);
   filt->SetBoundaryvalue(0);
 
-  filt->SetAlgorithm(FiltType::VHGW);
+  filt->SetAlgorithm(FiltType::AlgorithmEnum::VHGW);
   typename TImage::Pointer result = filt->GetOutput();
   result->Update();
   result->DisconnectPipeline();
@@ -223,7 +223,7 @@ typename TImage::Pointer doDilate(const typename TImage::Pointer input, int xrad
   filt->SetInput(input);
   filt->SetKernel(kernel);
 
-  filt->SetAlgorithm(FiltType::VHGW);
+  filt->SetAlgorithm(FiltType::AlgorithmEnum::VHGW);
   typename TImage::Pointer result = filt->GetOutput();
   result->Update();
   result->DisconnectPipeline();
@@ -256,7 +256,7 @@ typename TImage::Pointer doOpening(const typename TImage::Pointer input, int xra
   filt->SetInput(input);
   filt->SetKernel(kernel);
 
-  filt->SetAlgorithm(FiltType::VHGW);
+  filt->SetAlgorithm(FiltType::AlgorithmEnum::VHGW);
   typename TImage::Pointer result = filt->GetOutput();
   result->Update();
   result->DisconnectPipeline();
@@ -344,7 +344,7 @@ typename TImage::Pointer doClosing(const typename TImage::Pointer input, int xra
   filt->SetInput(input);
   filt->SetKernel(kernel);
 
-  filt->SetAlgorithm(FiltType::VHGW);
+  filt->SetAlgorithm(FiltType::AlgorithmEnum::VHGW);
   typename TImage::Pointer result = filt->GetOutput();
   result->Update();
   result->DisconnectPipeline();
@@ -377,7 +377,7 @@ typename TImage::Pointer doGradient(const typename TImage::Pointer input, int xr
   filt->SetInput(input);
   filt->SetKernel(kernel);
 
-  filt->SetAlgorithm(FiltType::VHGW);
+  filt->SetAlgorithm(FiltType::AlgorithmEnum::VHGW);
   typename TImage::Pointer result = filt->GetOutput();
   result->Update();
   result->DisconnectPipeline();
@@ -403,7 +403,7 @@ typename TImage::Pointer doGradientMM(const typename TImage::Pointer input, int 
   filt->SetInput(input);
   filt->SetKernel(kernel);
 
-  filt->SetAlgorithm(FiltType::VHGW);
+  filt->SetAlgorithm(FiltType::AlgorithmEnum::VHGW);
   typename TImage::Pointer result = filt->GetOutput();
   result->Update();
   result->DisconnectPipeline();
@@ -451,7 +451,7 @@ typename TImage::Pointer doDilateMM(const typename TImage::Pointer input, float 
   filt->SetInput(input);
   filt->SetKernel(kernel);
 
-  filt->SetAlgorithm(FiltType::VHGW);
+  filt->SetAlgorithm(FiltType::AlgorithmEnum::VHGW);
   typename TImage::Pointer result = filt->GetOutput();
   result->Update();
   result->DisconnectPipeline();
@@ -478,7 +478,7 @@ typename TImage::Pointer doOpeningMM(const typename TImage::Pointer input, float
   filt->SetInput(input);
   filt->SetKernel(kernel);
 
-  filt->SetAlgorithm(FiltType::VHGW);
+  filt->SetAlgorithm(FiltType::AlgorithmEnum::VHGW);
   typename TImage::Pointer result = filt->GetOutput();
   result->Update();
   result->DisconnectPipeline();
@@ -683,7 +683,7 @@ typename TImage::Pointer doClosingMM(const typename TImage::Pointer input, float
   filt->SetInput(input);
   filt->SetKernel(kernel);
 
-  filt->SetAlgorithm(FiltType::VHGW);
+  filt->SetAlgorithm(FiltType::AlgorithmEnum::VHGW);
   typename TImage::Pointer result = filt->GetOutput();
   result->Update();
   result->DisconnectPipeline();
